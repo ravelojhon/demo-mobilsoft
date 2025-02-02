@@ -7,23 +7,27 @@ import { Select, SelectModule } from 'primeng/select';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { CardModule } from 'primeng/card';
+import { AspirantesService } from './aspirantes.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-aspirantes',
   imports: [CommonModule, ReactiveFormsModule, DialogModule,
-     SelectModule, InputTextModule,ButtonModule,TableModule,CardModule],
+    SelectModule, InputTextModule, ButtonModule, TableModule, CardModule],
   standalone: true,
   templateUrl: './aspirantes.component.html',
   styleUrl: './aspirantes.component.css',
-  
+
 })
 export class AspirantesComponent implements OnInit {
+
   aspirantes: any[] = [];
   showForm = false;
   editMode = false;
   formTitle = 'Crear Aspirante';
   aspiranteForm!: FormGroup;
   selectedAspirante: any;
+  selectedRow! :any;
   // aspirantes!: any[];
 
   cols!: any[];
@@ -47,30 +51,30 @@ export class AspirantesComponent implements OnInit {
   ]
 
   grupoSanguinieo: any[] = [
-    {label:"A +",id:1},
-    {label:"A -",id:2},
-    {label:"B +",id:3},
-    {label:"B -",id:4},
-    {label:"AB +",id:5},
-    {label:"AB -",id:6},
-    {label:"O +",id:7},
-    {label:"O - ",id:8},
+    { label: "A +", id: 1 },
+    { label: "A -", id: 2 },
+    { label: "B +", id: 3 },
+    { label: "B -", id: 4 },
+    { label: "AB +", id: 5 },
+    { label: "AB -", id: 6 },
+    { label: "O +", id: 7 },
+    { label: "O - ", id: 8 },
   ]
 
   NivelEducativo: any[] = [
-    {label:"Basica Primaria",id:1},
-    {label:"Basica Secundaria",id:2},
-    {label:"Bachiller",id:3},
-    {label:"Tecnico",id:4},
-    {label:"Tecnologo",id:5},
-    {label:"Profesional",id:6},
-    {label:"Posgrado",id:7},
+    { label: "Basica Primaria", id: 1 },
+    { label: "Basica Secundaria", id: 2 },
+    { label: "Bachiller", id: 3 },
+    { label: "Tecnico", id: 4 },
+    { label: "Tecnologo", id: 5 },
+    { label: "Profesional", id: 6 },
+    { label: "Posgrado", id: 7 },
   ]
 
-                       
+
 
   constructor(
-    // private aspiranteService: AspiranteService,
+    private aspiranteService: AspirantesService,
     private fb: FormBuilder
   ) {
     this.aspiranteForm = this.fb.group({
@@ -93,41 +97,51 @@ export class AspirantesComponent implements OnInit {
   }
   ngOnInit(): void {
     this.cols = [
-      {field:"nombres", header:"Nombres"},
-      {field:"apellidos", header:"Apellidos"},
-      {field:"tipo_documento", header:"Tipo Documento"},
-      {field:"numero_documento", header:"Numero Documento"},
-      {field:"fecha_nacimiento", header:"Fecha Nacimiento"},
-      {field:"sexo", header:"Sexo"},
-      {field:"estado_civil", header:"Estado Civil"},
-      {field:"grupo_sanguineo", header:"Grupo Sanguineo"},
-      {field:"direccion", header:"Direccion"},
-      {field:"telefono", header:"Telefono"},
-      {field:"correo_electronico", header:"Correo Electronico"},
-      {field:"nivel_educativo", header:"Nivel Educativo"},
-      {field:"cargo_aspirado", header:"Cargo Aspirado"},
-      {field:"documentos", header:"Documentos"},
-      {field:"empresa_id", header:"Empresa Id"},
-      {field:"acciones", header:"Acciones"},
-  ];
+      { field: "Nombres", header: "Nombres" },
+      { field: "Apellidos", header: "Apellidos" },
+      { field: "TipoDocumento", header: "Tipo Documento" },
+      { field: "NumeroDocumento", header: "Numero Documento" },
+      { field: "FechaNacimientoFormatted", header: "Fecha Nacimiento" },
+      { field: "Sexo", header: "Sexo" },
+      { field: "EstadoCivil", header: "Estado Civil" },
+      { field: "GrupoSanguineo", header: "Grupo Sanguineo" },
+      { field: "Direccion", header: "Direccion" },
+      { field: "Telefono", header: "Telefono" },
+      { field: "CorreoElectronico", header: "Correo Electronico" },
+      { field: "NivelEducativo", header: "Nivel Educativo" },
+      { field: "CargoAspirado", header: "Cargo Aspirado" },
+      { field: "Documentos", header: "Documentos" },
+      { field: "Empresa", header: "Empresa Id" },
+    ];
     this.loadAspirantes();
   }
+
   loadAspirantes() {
-    // this.aspiranteService.findAll()
-    //     .subscribe(aspirantes => {
-    //         this.aspirantes = aspirantes;
-    //    },
-    //     error => {
-    //         console.error('Error al cargar los aspirantes', error);
-    //     }
-    //  );
+    this.aspiranteService.getAspirantes().subscribe({
+      next: (data) => {
+        // `data` es lo que recibimos de la API, en este caso una lista de aspirantes
+        this.aspirantes = data?.resultado[0]; // Asignamos los aspirantes a la variable
+      },
+      error: (error) => {
+        // En caso de error, mostramos un mensaje
+        console.error('Error al obtener los aspirantes', error);
+        // this.errorMessage = 'Hubo un error al cargar los aspirantes. Intente nuevamente.';
+      },
+      complete: () => {
+        console.log('La solicitud de aspirantes ha sido completada.');
+      }
+    });
   }
 
-  showDialog(state:boolean) {
+  showDialog(state: boolean) {
+    if(state ===false){
+      this.selectedRow = null
+    }
     this.showForm = state;
   }
 
   createAspirante() {
+    this.selectedRow=null
     this.aspiranteForm.reset();
     // this.showForm = true;
     this.showDialog(true)
@@ -135,56 +149,99 @@ export class AspirantesComponent implements OnInit {
     this.editMode = false;
   }
 
-  editAspirante(aspirante: any) {
-    this.selectedAspirante = aspirante;
-    this.aspiranteForm.patchValue(aspirante);
-    this.showForm = true;
-    this.formTitle = 'Editar Aspirante';
-    this.editMode = true;
-  }
+  editarAspirante(aspirante: any) {
+    // Aquí puedes manejar la lógica de edición, por ejemplo, abrir un formulario de edición con los datos del aspirante.
+    console.log(aspirante);
+    // Llamar a un servicio para editar o actualizar los datos según lo que necesites.
+    this.selectedRow=aspirante;
+
+    const findTipoDocumento = this.typeDocuments?.find((tipo: any) => tipo.codigo === aspirante.TipoDocumento)
+    const findSexo = this.sexo?.find((tipo: any) => tipo.label === aspirante.Sexo)
+    const findEstado = this.estadoCivil?.find((tipo: any) => tipo.label === aspirante.EstadoCivil)
+    const findGrupo = this.grupoSanguinieo?.find((tipo: any) => tipo.label === aspirante.GrupoSanguineo)
+    const findNivel = this.NivelEducativo?.find((tipo: any) => tipo.label === aspirante.NivelEducativo)
+
+    this.aspiranteForm.get('Nombres')?.setValue(aspirante?.Nombres)
+       this.aspiranteForm.get('Apellidos')?.setValue(aspirante?.Apellidos)
+       this.aspiranteForm.get('TipoDocumento')?.setValue(findTipoDocumento)
+       this.aspiranteForm.get('NumeroDocumento')?.setValue(aspirante?.NumeroDocumento)
+       this.aspiranteForm.get('FechaNacimiento')?.setValue(aspirante?.FechaNacimiento)
+       this.aspiranteForm.get('Sexo')?.setValue(findSexo)
+       this.aspiranteForm.get('EstadoCivil')?.setValue(findEstado)
+       this.aspiranteForm.get('GrupoSanguineo')?.setValue(findGrupo)
+       this.aspiranteForm.get('Direccion')?.setValue(aspirante?.Direccion)
+       this.aspiranteForm.get('Telefono')?.setValue(aspirante?.Telefono)
+       this.aspiranteForm.get('CorreoElectronico')?.setValue(aspirante?.CorreoElectronico)
+       this.aspiranteForm.get('NivelEducativo')?.setValue(findNivel)
+       this.aspiranteForm.get('CargoAspirado')?.setValue(aspirante?.CargoAspirado)
+       this.aspiranteForm.get('Documentos')?.setValue(aspirante?.Documentos)
+       this.aspiranteForm.get('EmpresaId')?.setValue(aspirante?.EmpresaId)
+    
+       this.showDialog(true)
+}
 
 
-  deleteAspirante(aspiranteId: number) {
-    // this.aspiranteService.delete(aspiranteId)
-    //     .subscribe(
-    //         () => {
-    //            this.loadAspirantes();
-    //             console.log('Aspirante eliminado');
-    //        },
-    //         error => {
-    //          console.error('Error al eliminar el aspirante', error);
-    //        }
-    //  );
-  }
+
   onSubmit() {
+    const object = {
+      AspiranteEmpleadoId: this.selectedRow !== null ? this.selectedRow?.AspiranteEmpleadoId : null,
+      Nombres: this.aspiranteForm.get('Nombres')?.value,
+      Apellidos: this.aspiranteForm.get('Apellidos')?.value,
+      TipoDocumento: this.aspiranteForm.get('TipoDocumento')?.value?.codigo,
+      NumeroDocumento: this.aspiranteForm.get('NumeroDocumento')?.value,
+      FechaNacimiento: this.aspiranteForm.get('FechaNacimiento')?.value,
+      Sexo: this.aspiranteForm.get('Sexo')?.value?.label,
+      EstadoCivil: this.aspiranteForm.get('EstadoCivil')?.value?.label || null,
+      GrupoSanguineo: this.aspiranteForm.get('GrupoSanguineo')?.value?.label || null,
+      Direccion: this.aspiranteForm.get('Direccion')?.value,
+      Telefono: this.aspiranteForm.get('Telefono')?.value || null,
+      CorreoElectronico: this.aspiranteForm.get('CorreoElectronico')?.value || null,
+      NivelEducativo: this.aspiranteForm.get('NivelEducativo')?.value?.label || null,
+      CargoAspirado: this.aspiranteForm.get('CargoAspirado')?.value || null,
+      Documentos: this.aspiranteForm.get('Documentos')?.value || null,
+      EmpresaId: parseInt(this.aspiranteForm.get('EmpresaId')?.value) || null
+    };
 
-    // if (this.aspiranteForm.valid) {
-    //     if (this.editMode) {
-    //         this.aspiranteService.update(this.selectedAspirante.AspiranteEmpleadoId, this.aspiranteForm.value)
-    //             .subscribe(
-    //                 () => {
-    //                    this.loadAspirantes();
-    //                    this.showForm = false;
-    //                     console.log('Aspirante actualizado');
-    //                 },
-    //                 error => {
-    //                   console.error('Error al actualizar el aspirante', error);
-    //               }
-    //             );
-    //     }
-    //     else {
-    //            this.aspiranteService.create(this.aspiranteForm.value)
-    //               .subscribe(
-    //                     () => {
-    //                     this.loadAspirantes();
-    //                     this.showForm = false;
-    //                     console.log('Aspirante creado');
-    //                   },
-    //                    error => {
-    //                      console.error('Error al crear el aspirante', error);
-    //                  }
-    //              );
-    //       }
-    // }
+    console.log(object)
+
+    if(this.selectedRow === null){
+      this.aspiranteService.createAspirantes(object).subscribe({
+        next: (data) => {
+          // `data` es lo que recibimos de la API, en este caso una lista de aspirantes
+          console.log('Aspirantes obtenidos:', data?.resultado[0]);
+          this.aspirantes = data?.resultado[0]; // Asignamos los aspirantes a la variable
+        },
+        error: (error) => {
+          // En caso de error, mostramos un mensaje
+          console.error('Error al obtener los aspirantes', error);
+          // this.errorMessage = 'Hubo un error al cargar los aspirantes. Intente nuevamente.';
+        },
+        complete: () => {
+          console.log('La solicitud de aspirantes ha sido completada.');
+          this.loadAspirantes();
+          this.aspiranteForm.reset();
+          this.showDialog(false)
+        }
+      });
+    }else{
+      this.aspiranteService.editAspirantes(object).subscribe({
+        next: (data) => {
+          // `data` es lo que recibimos de la API, en este caso una lista de aspirantes
+          console.log('Aspirantes obtenidos:', data?.resultado[0]);
+          this.aspirantes = data?.resultado[0]; // Asignamos los aspirantes a la variable
+        },
+        error: (error) => {
+          // En caso de error, mostramos un mensaje
+          console.error('Error al obtener los aspirantes', error);
+          // this.errorMessage = 'Hubo un error al cargar los aspirantes. Intente nuevamente.';
+        },
+        complete: () => {
+          console.log('La solicitud de aspirantes ha sido completada.');
+          this.loadAspirantes();
+          this.aspiranteForm.reset();
+          this.showDialog(false)
+        }
+      });
+    }
   }
 }

@@ -12,6 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PrimeNG } from 'primeng/config';
 import { DialogModule } from 'primeng/dialog';
 import { SelectModule } from 'primeng/select';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',

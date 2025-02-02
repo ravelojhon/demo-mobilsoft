@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -6,20 +6,28 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Lara from '@primeng/themes/lara';
+import { HttpClientModule } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay()), provideAnimationsAsync(),
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
+    provideAnimationsAsync(),
+  
     providePrimeNG({
-      inputStyle:'filled',
+      inputStyle: 'filled',
       theme: {
         preset: Lara,
         options: {
-            prefix: 'p',
-            darkModeSelector: 'primary',
-            cssLayer: false
+          prefix: 'p',
+          darkModeSelector: 'primary',
+          cssLayer: false
         }
-    }
-  })
+      }
+    }),
+    importProvidersFrom(HttpClientModule) 
+    // providers: [HttpClientModule],
   ]
 };
