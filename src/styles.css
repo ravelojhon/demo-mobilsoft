@@ -3,7 +3,7 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .header_modal {
-    background-color: #82bff0;
+    background-color: #0284c7;
     position: absolute;
     top: 0;
     left: 0;
@@ -58,4 +58,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   
   .style-search-dropdown .p-element.p-inputwrapper .custom-dropdown ul.p-dropdown-items li {
     padding: 0 7px;
+  }
+
+  .p-dropdown-panel {
+    z-index: 1000 !important; /* Ajusta este valor según sea necesario */
+  }
+
+  .p-inputtext {
+    padding: 0.5rem !important; /* Ajusta este valor según sea necesario */
+    width: 100%;
   }

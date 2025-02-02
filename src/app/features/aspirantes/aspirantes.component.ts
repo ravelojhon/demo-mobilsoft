@@ -1,16 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Dialog } from 'primeng/dialog';
+import { Dialog, DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
-import { Select } from 'primeng/select';
+import { Select, SelectModule } from 'primeng/select';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-aspirantes',
-  imports: [CommonModule, ReactiveFormsModule, Dialog, InputTextModule, Select],
+  imports: [CommonModule, ReactiveFormsModule, DialogModule,
+     SelectModule, InputTextModule,ButtonModule],
   standalone: true,
   templateUrl: './aspirantes.component.html',
-  styleUrl: './aspirantes.component.css'
+  styleUrl: './aspirantes.component.css',
+  providers: [Dialog,Select]
 })
 export class AspirantesComponent implements OnInit {
   aspirantes: any[] = [];

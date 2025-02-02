@@ -10,10 +10,17 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterModule, Routes } from '@angular/router';
 import { PrimeNG } from 'primeng/config';
+import { DialogModule } from 'primeng/dialog';
+import { SelectModule } from 'primeng/select';
 
 @Component({
   selector: 'app-root',
   imports: [
+    /*
+    Dialog, InputTextModule, Select
+    */
+   DialogModule,
+   SelectModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,

@@ -1,7 +1,9 @@
 <h2>Gestión de Aspirantes</h2>
-<button (click)="createAspirante()">Crear Aspirante</button>
+<!-- <button (click)="createAspirante()">Crear Aspirante</button> -->
+<p-button label="Crear Aspirante" (onClick)="createAspirante()" severity="info"/>
 
-<p-dialog [modal]="true" [(visible)]="showForm" [style]="{ width: '45vw', height:'60vh' }">
+<!-- <p-dialog [modal]="true" [(visible)]="showForm" [style]="{ width: '45vw', height:'60vh' }"> -->
+    <p-dialog [modal]="true" [(visible)]="showForm" [style]="{ width: '90%', maxWidth: '800px', height: 'auto' }">
 
     <form [formGroup]="aspiranteForm" (ngSubmit)="onSubmit()">
         <div class="header_modal">
@@ -9,79 +11,90 @@
         </div>
 
         <div class="content_modal">
-            <div class="row">
-                <div class="col-3">
+            <div class="row" >
+                <div class="col-12 col-md-6 col-lg-3">
                     <label for="Nombres" style="display: block;">Nombres:</label>
-                    <input type="text" id="Nombres" formControlName="Nombres">
-
+                    <input type="text" pInputText id="Nombres" formControlName="Nombres"/>
                     <div
                         *ngIf="aspiranteForm.get('Nombres')?.invalid && (aspiranteForm.get('Nombres')?.dirty || aspiranteForm.get('Nombres')?.touched)">
-                        <div *ngIf="aspiranteForm.get('Nombres')?.errors?.['required']">Nombre es obligatorio.</div>
+                        <div *ngIf="aspiranteForm.get('Nombres')?.errors?.['required']"><span style="color: red;">
+                            Obligatorio.
+                        </span>
+                            </div>
                     </div>
                 </div>
-                <div class="col-3">
+               <div class="col-12 col-md-6 col-lg-3">
                     <label for="Apellidos" style="display: block;">Apellidos:</label>
-                    <input type="text" id="Apellidos" formControlName="Apellidos" required>
+                    <!-- <input type="text" id="Apellidos" formControlName="Apellidos" required> -->
+                    <input type="text" pInputText id="Apellidos" formControlName="Apellidos"/>
                     <div
                         *ngIf="aspiranteForm.get('Apellidos')?.invalid && (aspiranteForm.get('Apellidos')?.dirty || aspiranteForm.get('Apellidos')?.touched)">
-                        <div *ngIf="aspiranteForm.get('Apellidos')?.errors?.['required']">Apellidos es obligatorio.
+                        <div *ngIf="aspiranteForm.get('Apellidos')?.errors?.['required']"><span style="color: red;">
+                            Obligatorio.
+                        </span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-3">
+               <div class="col-12 col-md-6 col-lg-3">
                     <label for="TipoDocumento" style="display: block;">Tipo Documento:</label>
 
                     <p-select formControlName="TipoDocumento" [options]="typeDocuments" optionLabel="codigo"
-                        placeholder="Seleccione..." [filter]="true" filterBy="codigo" appendTo="body" />
+                        placeholder="Seleccione..." [filter]="true" filterBy="codigo" appendTo="body" [ngStyle]="{ width: '100%' }"/>
                     <div
                         *ngIf="aspiranteForm.get('TipoDocumento')?.invalid && (aspiranteForm.get('TipoDocumento')?.dirty || aspiranteForm.get('TipoDocumento')?.touched)">
-                        <div *ngIf="aspiranteForm.get('TipoDocumento')?.errors?.['required']">Tipo Documento es
-                            obligatorio.</div>
+                        <div *ngIf="aspiranteForm.get('TipoDocumento')?.errors?.['required']"><span style="color: red;">
+                            Obligatorio.
+                        </span></div>
                     </div>
                 </div>
 
-                <div class="col-3">
+               <div class="col-12 col-md-6 col-lg-3">
                     <label for="NumeroDocumento" style="display: block;">Numero Documento:</label>
-                    <input type="text" id="NumeroDocumento" formControlName="NumeroDocumento" required>
+                    <!-- <input type="text" id="NumeroDocumento" formControlName="NumeroDocumento" required> -->
+                    <input type="text" pInputText id="NumeroDocumento" formControlName="NumeroDocumento"/>
                     <div
                         *ngIf="aspiranteForm.get('NumeroDocumento')?.invalid && (aspiranteForm.get('NumeroDocumento')?.dirty || aspiranteForm.get('NumeroDocumento')?.touched)">
-                        <div *ngIf="aspiranteForm.get('NumeroDocumento')?.errors?.['required']">Numero Documento es
-                            obligatorio.</div>
+                        <div *ngIf="aspiranteForm.get('NumeroDocumento')?.errors?.['required']"><span style="color: red;">
+                            Obligatorio.
+                        </span></div>
                     </div>
                 </div>
             </div>
 
             <div class="row" style="margin-top: 12px;">
 
-                <div class="col-3">
-                    <label for="FechaNacimiento">Fecha Nacimiento:</label>
+               <div class="col-12 col-md-6 col-lg-3">
+                    <label for="FechaNacimiento" style="display: block;">Fecha Nacimiento:</label>
                     <input type="date" id="FechaNacimiento" formControlName="FechaNacimiento" required>
                     <div
                         *ngIf="aspiranteForm.get('FechaNacimiento')?.invalid && (aspiranteForm.get('FechaNacimiento')?.dirty || aspiranteForm.get('FechaNacimiento')?.touched)">
-                        <div *ngIf="aspiranteForm.get('FechaNacimiento')?.errors?.['required']">Fecha Nacimiento es
-                            obligatorio.</div>
+                        <div *ngIf="aspiranteForm.get('FechaNacimiento')?.errors?.['required']"><span style="color: red;">
+                            Obligatorio.
+                        </span></div>
                     </div>
                 </div>
 
-                <div class="col-3">
-                    <label for="Sexo">Sexo:</label>
+               <div class="col-12 col-md-6 col-lg-3">
+                    <label for="Sexo" style="display: block;">Sexo:</label>
                     <p-select formControlName="Sexo" [options]="sexo" optionLabel="label" placeholder="Seleccione..."
                         [filter]="true" filterBy="label" appendTo="body" />
                     <div
                         *ngIf="aspiranteForm.get('Sexo')?.invalid && (aspiranteForm.get('Sexo')?.dirty || aspiranteForm.get('Sexo')?.touched)">
-                        <div *ngIf="aspiranteForm.get('Sexo')?.errors?.['required']">Sexo es obligatorio.</div>
+                        <div *ngIf="aspiranteForm.get('Sexo')?.errors?.['required']"><span style="color: red;">
+                            Obligatorio.
+                        </span></div>
                     </div>
                 </div>
 
-                <div class="col-3">
-                    <label for="EstadoCivil">Estado Civil:</label>
+               <div class="col-12 col-md-6 col-lg-3">
+                    <label for="EstadoCivil" style="display: block;">Estado Civil:</label>
                     <p-select formControlName="EstadoCivil" [options]="estadoCivil" optionLabel="label"
                         placeholder="Seleccione..." [filter]="true" filterBy="label" appendTo="body" />
                 </div>
 
-                <div class="col-3">
-                    <label for="GrupoSanguineo">Grupo Sanguineo:</label>
+               <div class="col-12 col-md-6 col-lg-3">
+                    <label for="GrupoSanguineo" style="display: block;">Grupo Sanguineo:</label>
                     <p-select formControlName="GrupoSanguineo" [options]="grupoSanguinieo" optionLabel="label"
                         placeholder="Seleccione..." [filter]="true" filterBy="label" appendTo="body" />
                 </div>
@@ -89,28 +102,34 @@
             </div>
 
             <div class="row" style="margin-top: 12px;">
-                <div class="col-3">
-                    <label for="Direccion">Direccion:</label>
-                    <input type="text" id="Direccion" formControlName="Direccion" required>
+               <div class="col-12 col-md-6 col-lg-3">
+                    <label for="Direccion" style="display: block;">Direccion:</label>
+                    <!-- <input type="text" id="Direccion" formControlName="Direccion" required> -->
+                    <input type="text" pInputText id="Direccion" formControlName="Direccion"/>
                     <div
                         *ngIf="aspiranteForm.get('Direccion')?.invalid && (aspiranteForm.get('Direccion')?.dirty || aspiranteForm.get('Direccion')?.touched)">
-                        <div *ngIf="aspiranteForm.get('Direccion')?.errors?.['required']">Direccion es obligatorio.
+                        <div *ngIf="aspiranteForm.get('Direccion')?.errors?.['required']"><span style="color: red;">
+                            Obligatorio.
+                        </span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-3">
-                    <label for="Telefono">Telefono:</label>
-                    <input type="text" id="Telefono" formControlName="Telefono">
+               <div class="col-12 col-md-6 col-lg-3">
+                    <label for="Telefono" style="display: block;">Telefono:</label>
+                    <!-- <input type="text" id="Telefono" formControlName="Telefono"> -->
+                    <input type="text" pInputText id="Telefono" formControlName="Telefono"/>
                 </div>
 
-                <div class="col-3">
-                    <label for="CorreoElectronico">Correo Electronico:</label>
-                    <input type="email" id="CorreoElectronico" formControlName="CorreoElectronico">
+               <div class="col-12 col-md-6 col-lg-3">
+                    <label for="CorreoElectronico" style="display: block;">Correo Electronico:</label>
+                    <!-- <input type="email" id="CorreoElectronico" formControlName="CorreoElectronico"> -->
+                    <input type="text" pInputText id="CorreoElectronico" formControlName="CorreoElectronico"/>
+
                 </div>
 
-                <div class="col-3">
-                    <label for="NivelEducativo">Nivel Educativo:</label>
+               <div class="col-12 col-md-6 col-lg-3">
+                    <label for="NivelEducativo" style="display: block;">Nivel Educativo:</label>
                     <p-select id="NivelEducativo" formControlName="NivelEducativo" [options]="NivelEducativo" optionLabel="label"
                         placeholder="Seleccione..." [filter]="true" filterBy="label" appendTo="body" />
                 </div>
@@ -118,37 +137,35 @@
             </div>
 
             <div class="row" style="margin-top: 12px;">
-                <div class="col-3">
-                    <label for="CargoAspirado">Cargo al que aspira:</label>
-                    <input type="text" id="CargoAspirado" formControlName="CargoAspirado">
+               <div class="col-12 col-md-6 col-lg-3">
+                    <label for="CargoAspirado" style="display: block;">Cargo al que aspira:</label>
+                    <!-- <input type="text" id="CargoAspirado" formControlName="CargoAspirado"> -->
+                    <input type="text" pInputText id="CargoAspirado" formControlName="CargoAspirado"/>
+
                 </div>
 
-                <div class="col-3">
-                    <label for="Documentos">Documentos:</label>
-                    <input type="text" id="Documentos" formControlName="Documentos">
+               <div class="col-12 col-md-6 col-lg-3">
+                    <label for="Documentos" style="display: block;">Documentos:</label>
+                    <!-- <input type="text" id="Documentos" formControlName="Documentos"> -->
+                    <input type="text" pInputText id="Documentos" formControlName="Documentos"/>
                 </div>
     
-                <div class="col-3">
-                    <label for="EmpresaId">Empresa:</label>
-                    <input type="text" id="EmpresaId" formControlName="EmpresaId" placeholder="Si aplica, ingrese el id de la empresa">
+               <div class="col-12 col-md-6 col-lg-3">
+                    <label for="EmpresaId" style="display: block;">Empresa:</label>
+                    <!-- <input type="text" id="EmpresaId" formControlName="EmpresaId" placeholder="Si aplica, ingrese el id de la empresa"> -->
+                    <input type="text" pInputText id="EmpresaId" formControlName="EmpresaId" placeholder="Si aplica"/>
+
                 </div>
             </div>
 
             <div style="display: flex; justify-content: end; margin: 12px;">
-                <button style="margin-right: 10px;" type="submit" class="btn btn-primary guardar me-2" [disabled]="aspiranteForm.invalid">
-                  <i class="bi bi-check"></i> Guardar
-                </button>
-                <button class="btn btn-danger cerrar" (click)="showDialog(false)" type="button">
-                  Cancelar
-                </button>
+             
+                <p-button label="Guardar" type="submit" severity="info" [disabled]="aspiranteForm.invalid" />
+
+                <p-button label="Cancelar" (onClick)="showDialog(false)" severity="danger" type="button" />
+              
               </div>
         </div>
-
-      
-
-        <!-- 
-    <button type="submit" [disabled]="aspiranteForm.invalid">Guardar</button>
-     <button type="button" (click)="showForm = false">Cancelar</button> -->
     </form>
 </p-dialog>
 
