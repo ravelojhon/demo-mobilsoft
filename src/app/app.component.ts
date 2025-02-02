@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,6 +9,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterModule, Routes } from '@angular/router';
+import { PrimeNG } from 'primeng/config';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,10 @@ import { RouterModule, Routes } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  constructor(private primeng: PrimeNG) {}
+
   title = 'angular-app';
   private breakpointObserver = inject(BreakpointObserver);
 
@@ -34,5 +38,8 @@ export class AppComponent {
       shareReplay()
     );
 
+    ngOnInit() {
+      this.primeng.ripple.set(true);
+  }
 
 }

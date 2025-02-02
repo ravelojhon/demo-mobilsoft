@@ -2,3 +2,60 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.header_modal {
+    background-color: #82bff0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+  
+  .header_modal h1 {
+    color: white;
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .content_modal {
+    padding: 30px 30px 15px 30px;
+  }
+
+  .style-search-dropdown {
+    padding: 0;
+    margin: 0 0 15px 0;
+    width: 100%;
+  }
+  
+  .style-search-dropdown .p-element.p-inputwrapper {
+    width: 100%;
+    display: block;
+  }
+  
+  .style-search-dropdown .p-element.p-inputwrapper .custom-dropdown {
+    width: 100%;
+  }
+  
+  .style-search-dropdown .p-element.p-inputwrapper .custom-dropdown span.p-element.p-dropdown-label.p-inputtext.p-placeholder.ng-star-inserted {
+    padding: 0 7px;
+  }
+  
+  .style-search-dropdown .p-element.p-inputwrapper .custom-dropdown input.p-dropdown-filter.p-inputtext.p-component {
+    padding: 0 7px;
+  }
+  
+  .style-search-dropdown .p-element.p-inputwrapper .custom-dropdown .p-dropdown-filter-icon {
+    margin-top: -0.5rem;
+  }
+  
+  .style-search-dropdown .p-element.p-inputwrapper .custom-dropdown ul.p-dropdown-items {
+    padding: 0;
+  }
+  
+  .style-search-dropdown .p-element.p-inputwrapper .custom-dropdown ul.p-dropdown-items li {
+    padding: 0 7px;
+  }
