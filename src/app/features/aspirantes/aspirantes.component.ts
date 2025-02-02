@@ -5,15 +5,17 @@ import { Dialog, DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { Select, SelectModule } from 'primeng/select';
 import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-aspirantes',
   imports: [CommonModule, ReactiveFormsModule, DialogModule,
-     SelectModule, InputTextModule,ButtonModule],
+     SelectModule, InputTextModule,ButtonModule,TableModule,CardModule],
   standalone: true,
   templateUrl: './aspirantes.component.html',
   styleUrl: './aspirantes.component.css',
-  providers: [Dialog,Select]
+  
 })
 export class AspirantesComponent implements OnInit {
   aspirantes: any[] = [];
@@ -22,6 +24,10 @@ export class AspirantesComponent implements OnInit {
   formTitle = 'Crear Aspirante';
   aspiranteForm!: FormGroup;
   selectedAspirante: any;
+  // aspirantes!: any[];
+
+  cols!: any[];
+
   typeDocuments: any[] = [
     { codigo: "CC", id: 1 },
     { codigo: "TI", id: 2 },
@@ -86,6 +92,24 @@ export class AspirantesComponent implements OnInit {
     })
   }
   ngOnInit(): void {
+    this.cols = [
+      {field:"nombres", header:"Nombres"},
+      {field:"apellidos", header:"Apellidos"},
+      {field:"tipo_documento", header:"Tipo Documento"},
+      {field:"numero_documento", header:"Numero Documento"},
+      {field:"fecha_nacimiento", header:"Fecha Nacimiento"},
+      {field:"sexo", header:"Sexo"},
+      {field:"estado_civil", header:"Estado Civil"},
+      {field:"grupo_sanguineo", header:"Grupo Sanguineo"},
+      {field:"direccion", header:"Direccion"},
+      {field:"telefono", header:"Telefono"},
+      {field:"correo_electronico", header:"Correo Electronico"},
+      {field:"nivel_educativo", header:"Nivel Educativo"},
+      {field:"cargo_aspirado", header:"Cargo Aspirado"},
+      {field:"documentos", header:"Documentos"},
+      {field:"empresa_id", header:"Empresa Id"},
+      {field:"acciones", header:"Acciones"},
+  ];
     this.loadAspirantes();
   }
   loadAspirantes() {
