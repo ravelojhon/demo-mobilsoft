@@ -1,0 +1,78 @@
+<div class="container">
+    <!-- Botón para abrir el formulario -->
+    <p-button label="Crear Prestador" (onClick)="createPrestador()" severity="info"></p-button>
+  
+    <!-- Formulario en Modal -->
+    <p-dialog [modal]="true" [(visible)]="showForm" [style]="{ width: '90%', maxWidth: '800px', height: 'auto' }">
+      <h3>{{ formTitle }}</h3>
+  
+      <!-- Formulario reactivo -->
+      <form [formGroup]="prestadorForm" (ngSubmit)="guardarPrestador()">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="nombre">Nombre del Prestador</label>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="especialidad">Especialidad</label>
+            <input type="text" class="form-control" id="especialidad" formControlName="especialidad" />
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="documento">Número de Documento</label>
+            <input type="text" class="form-control" id="documento" formControlName="documento" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="telefono">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" formControlName="telefono" />
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="direccion">Dirección</label>
+            <input type="text" class="form-control" id="direccion" formControlName="direccion" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="email">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" formControlName="email" />
+          </div>
+        </div>
+  
+        <!-- Botón para guardar el prestador -->
+        <button type="submit" class="btn btn-primary" [disabled]="prestadorForm.invalid">Guardar Prestador</button>
+      </form>
+    </p-dialog>
+  
+    <!-- Tabla de Prestadores -->
+    <p-table [value]="prestadores" [paginator]="true" [rows]="5" [responsive]="true" class="mt-4">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nombre</th>
+          <th>Especialidad</th>
+          <th>Documento</th>
+          <th>Teléfono</th>
+          <th>Dirección</th>
+          <th>Correo</th>
+          <th>Acciones</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-prestador>
+        <tr>
+          <td>{{ prestador.nombre }}</td>
+          <td>{{ prestador.especialidad }}</td>
+          <td>{{ prestador.documento }}</td>
+          <td>{{ prestador.telefono }}</td>
+          <td>{{ prestador.direccion }}</td>
+          <td>{{ prestador.email }}</td>
+          <td>
+            <p-button icon="pi pi-pencil" (onClick)="editarPrestador(prestador)" severity="warn"></p-button>
+            <p-button icon="pi pi-trash" (onClick)="eliminarPrestador(prestador)" severity="danger"></p-button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  

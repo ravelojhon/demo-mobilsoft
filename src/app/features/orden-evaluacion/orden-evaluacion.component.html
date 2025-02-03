@@ -1,0 +1,91 @@
+<div class="container">
+    <!-- Botón para abrir el formulario -->
+    <p-button label="Expedir Orden para Evaluación Médica" (onClick)="createOrden()" severity="info" />
+
+    <!-- Formulario en Modal -->
+    <p-dialog [modal]="true" [(visible)]="showForm" [style]="{ width: '90%', maxWidth: '800px', height: 'auto' }">
+        <h3>{{ formTitle }}</h3>
+
+        <!-- Formulario reactivo -->
+        <form [formGroup]="ordenForm" (ngSubmit)="guardarOrden()">
+            <div class="row col-lg-12">
+
+                <!-- Información del Aspirante -->
+                <div class="form-group col-md-4">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" formControlName="nombre" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" formControlName="apellido" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="documento">Documento</label>
+                    <input type="text" class="form-control" id="documento" formControlName="documento" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" formControlName="telefono" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="direccion">Dirección</label>
+                    <input type="text" class="form-control" id="direccion" formControlName="direccion" />
+                </div>
+
+                <!-- Detalles de la Orden -->
+                <div class="form-group col-md-3">
+                    <label for="fechaOrden">Fecha de Orden</label>
+                    <input type="date" class="form-control" id="fechaOrden" formControlName="fechaOrden" />
+                </div>
+                <div class="form-group">
+                    <label for="medico">Médico Encargado</label>
+                    <input type="text" class="form-control" id="medico" formControlName="medico" />
+                </div>
+                <div class="form-group">
+                    <label for="motivo">Motivo de Evaluación</label>
+                    <textarea class="form-control" id="motivo" formControlName="motivo"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="resultado">Resultado de Evaluación</label>
+                    <textarea class="form-control" id="resultado" formControlName="resultado"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="comentarios">Comentarios Adicionales</label>
+                    <textarea class="form-control" id="comentarios" formControlName="comentarios"></textarea>
+                </div>
+            </div>
+
+            <!-- Botón para guardar la orden -->
+            <button type="submit" class="btn btn-primary" [disabled]="ordenForm.invalid">Guardar Orden</button>
+        </form>
+    </p-dialog>
+
+    <!-- Tabla de Ordenes -->
+    <p-table [value]="ordenes" [paginator]="true" [rows]="5" [responsive]="true" class="mt-4">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nombre</th>
+                <th>Documento</th>
+                <th>Fecha de Orden</th>
+                <th>Médico</th>
+                <th>Motivo</th>
+                <th>Resultado</th>
+                <th>Acciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-orden>
+            <tr>
+                <td>{{ orden.nombre }}</td>
+                <td>{{ orden.documento }}</td>
+                <td>{{ orden.fechaOrden | date }}</td>
+                <td>{{ orden.medico }}</td>
+                <td>{{ orden.motivo }}</td>
+                <td>{{ orden.resultado }}</td>
+                <td>
+                    <p-button icon="pi pi-pencil" (onClick)="editarOrden(orden)" severity="warn" />
+                    <p-button icon="pi pi-trash" (onClick)="eliminarOrden(orden)" severity="danger" />
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -1,0 +1,215 @@
+<div class="container">
+  <p-button label="Crear Historia Clínica" (onClick)="createHistoriaClinica()" severity="info"></p-button>
+
+  <p-dialog [modal]="true" [(visible)]="showForm" [style]="{ width: '90%', maxWidth: '800px', height: 'auto' }">
+    <h3>{{ formTitle }}</h3>
+
+    <form [formGroup]="historiaClinicaForm" (ngSubmit)="guardarHistoriaClinica()">
+      <!-- Campos Generales -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="orden_id">ID Orden</label>
+          <input type="number" class="form-control" id="orden_id" formControlName="orden_id" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="fecha_examen">Fecha Examen</label>
+          <input type="date" class="form-control" id="fecha_examen" formControlName="fecha_examen" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="tipo_examen">Tipo Examen</label>
+          <input type="text" class="form-control" id="tipo_examen" formControlName="tipo_examen" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="dependencia">Dependencia</label>
+          <input type="text" class="form-control" id="dependencia" formControlName="dependencia" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="cargo">Cargo</label>
+          <input type="text" class="form-control" id="cargo" formControlName="cargo" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="eps">EPS</label>
+          <input type="text" class="form-control" id="eps" formControlName="eps" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="afp">AFP</label>
+          <input type="text" class="form-control" id="afp" formControlName="afp" />
+        </div>
+      </div>
+
+      <!-- Campos opcionales: Patológicos, quirúrgicos, etc. -->
+      <div class="row">
+        <div class="col-md-3 mb-3">
+          <label for="patologicos">Patológicos</label>
+          <input type="checkbox" formControlName="patologicos" />
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="quirurgicos">Quirúrgicos</label>
+          <input type="checkbox" formControlName="quirurgicos" />
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="traumaticos">Traumáticos</label>
+          <input type="checkbox" formControlName="traumaticos" />
+        </div>
+      </div>
+
+      <!-- Otros campos de antecedentes -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="enfermedades_laborales">Enfermedades Laborales</label>
+          <input type="text" class="form-control" id="enfermedades_laborales"
+            formControlName="enfermedades_laborales" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="consumo_cigarrillo">Consumo Cigarrillo</label>
+          <input type="text" class="form-control" id="consumo_cigarrillo" formControlName="consumo_cigarrillo" />
+        </div>
+      </div>
+
+      <!-- Campos de antecedentes de hábitos -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="consumo_alcohol">Consumo Alcohol</label>
+          <input type="text" class="form-control" id="consumo_alcohol" formControlName="consumo_alcohol" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="consumo_psicoactivas">Consumo Psicoactivas</label>
+          <input type="text" class="form-control" id="consumo_psicoactivas" formControlName="consumo_psicoactivas" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="actividad_fisica">Actividad Física</label>
+          <input type="text" class="form-control" id="actividad_fisica" formControlName="actividad_fisica" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="antecedentes_familiares">Antecedentes Familiares</label>
+          <input type="text" class="form-control" id="antecedentes_familiares"
+            formControlName="antecedentes_familiares" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="antecedentes_ocupacionales">Antecedentes Ocupacionales</label>
+          <input type="text" class="form-control" id="antecedentes_ocupacionales"
+            formControlName="antecedentes_ocupacionales" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="hallazgos_dermatologicos">Hallazgos Dermatológicos</label>
+          <input type="text" class="form-control" id="hallazgos_dermatologicos"
+            formControlName="hallazgos_dermatologicos" />
+        </div>
+      </div>
+
+      <!-- Signos y síntomas -->
+      <div class="row">
+        <div class="col-md-3 mb-3">
+          <label for="cardiovascular">Cardiovascular</label>
+          <input type="checkbox" formControlName="cardiovascular" />
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="respiratorio">Respiratorio</label>
+          <input type="checkbox" formControlName="respiratorio" />
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="gastrointestinal">Gastrointestinal</label>
+          <input type="checkbox" formControlName="gastrointestinal" />
+        </div>
+      </div>
+
+      <!-- Examen físico y otros -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="frecuencia_cardiaca">Frecuencia Cardiaca</label>
+          <input type="number" class="form-control" id="frecuencia_cardiaca" formControlName="frecuencia_cardiaca" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="frecuencia_respiratoria">Frecuencia Respiratoria</label>
+          <input type="number" class="form-control" id="frecuencia_respiratoria"
+            formControlName="frecuencia_respiratoria" />
+        </div>
+      </div>
+
+      <!-- Diagnóstico -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="diagnostico">Diagnóstico</label>
+          <input type="text" class="form-control" id="diagnostico" formControlName="diagnostico" />
+        </div>
+      </div>
+
+      <!-- Resultado de examen -->
+      <div class="row">
+        <div class="col-md-3 mb-3">
+          <label for="apto_cargo">Apto para el cargo</label>
+          <input type="checkbox" formControlName="apto_cargo" />
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="apto_restricciones">Apto con restricciones</label>
+          <input type="checkbox" formControlName="apto_restricciones" />
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="aplazado">Aplazado</label>
+          <input type="checkbox" formControlName="aplazado" />
+        </div>
+      </div>
+
+      <!-- Recomendaciones y Profesional -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="recomendaciones_restricciones">Recomendaciones y Restricciones</label>
+          <input type="text" class="form-control" id="recomendaciones_restricciones"
+            formControlName="recomendaciones_restricciones" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="nombre_profesional">Nombre Profesional</label>
+          <input type="text" class="form-control" id="nombre_profesional" formControlName="nombre_profesional" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </p-dialog>
+</div>
+
+<p-table [value]="historiasClinicas"  [paginator]="true" [rows]="5" [responsive]="true" class="mt-4"> 
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="orden_id">Orden ID <p-sortIcon field="orden_id"></p-sortIcon></th>
+      <th pSortableColumn="fecha_examen">Fecha Examen <p-sortIcon field="fecha_examen"></p-sortIcon></th>
+      <th pSortableColumn="tipo_examen">Tipo Examen <p-sortIcon field="tipo_examen"></p-sortIcon></th>
+      <th pSortableColumn="cargo">Cargo <p-sortIcon field="cargo"></p-sortIcon></th>
+      <th pSortableColumn="eps">EPS <p-sortIcon field="eps"></p-sortIcon></th>
+      <th pSortableColumn="afp">AFP <p-sortIcon field="afp"></p-sortIcon></th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-historia>
+    <tr>
+      <td>{{ historia.orden_id }}</td>
+      <td>{{ historia.fecha_examen | date:'dd/MM/yyyy' }}</td>
+      <td>{{ historia.tipo_examen }}</td>
+      <td>{{ historia.cargo }}</td>
+      <td>{{ historia.eps }}</td>
+      <td>{{ historia.afp }}</td>
+      <td>
+        <p-button  (onClick)="editarHistoriaClinica(historia)" class="p-button-rounded p-button-info p-mr-2"></p-button>
+        <p-button  (onClick)="eliminarHistoriaClinica(historia.id)" class="p-button-rounded p-button-danger"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
