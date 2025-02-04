@@ -1,127 +1,308 @@
 <div class="card" style="margin-top: 12px;">
-    <div class="card-header">
-        <div class="shadow-div-icon">-</div>
-        <div class="div-icon"><i class="pi pi-id-card"></i></div>
-        <h5><i class="pi pi-user"></i> Antecedentes Inmunologicos</h5>
-    </div>
-    <div class="card-body p-4">
-        <div class="container">
-            <form [formGroup]="examenFisico" (ngSubmit)="onSubmit()">
+  <div class="card-header">
+    <div class="shadow-div-icon">-</div>
+    <div class="div-icon"><i class="pi pi-id-card"></i></div>
+    <h5><i class="pi pi-user"></i> Examen Fisico</h5>
+  </div>
+  <div class="card-body p-4">
+    <div class="container">
+      <form [formGroup]="examenFisico" (ngSubmit)="onSubmit()">
 
-                <div class="row align-items-center">
-                    <div class="mb15 col-4 two-digits">
-                        <div class="col label-exam">
-                          <label style="display: block;">Presión arterial sistólica</label>
-                        </div>
-                        <div class="col-auto">
-                          <input type="number" class="form-control" formControlName="tensionArterialSistolica" min="100" />
-                        </div>
+        <div class="row align-items-center">
+          <div class="mb15 col-4">
+            <label style="display: block;">Presión arterial sistólica</label>
+            <input type="number" class="form-control" formControlName="tensionArterialSistolica" min="100" />
+          </div>
 
-                    </div>
-                    <div class="mb15  col-4 two-digits">
-                      <div class="row align-items-center">
-                        <div class="col label-exam">
-                          <label style="display: block;">Presión arterial diastólica</label>
-                        </div>
-                        <div class="col-auto">
-                          <input type="number" class="form-control" formControlName="tensionArterialDiastolica"
-                            (change)="calcularMedia($event)" 
-                            min="0"
-                            />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="mb15 col-4 two-digits">
-                      <div class="row align-items-center">
-                        <div class="col label-exam">
-                          <label style="display: block;">Presión arterial media </label>
-                        </div>
-                        <div class="col-auto">
-                          <input type="number" formControlName="presionMedia" class="form-control"/>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <div class="row align-items-center">
-                    <div class="mb15 col-4 two-digits">
-                      <div class="row align-items-center">
-                        <div class="col label-exam">
-                          <label style="display: block;">Peso (kg)</label>
-                        </div>
-                        <div class="col-auto">
-                          <input type="number" class="form-control" formControlName="peso" [value]="this.examenFisico.get('peso')?.value"
-                          min="0"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="mb15 col-4 two-digits">
-                      <div class="row align-items-center">
-                        <div class="col label-exam">
-                          <label style="display: block;">Talla (cms)</label>
-                        </div>
-                        <div class="col-auto">
-                          <input type="number" formControlName="talla" class="form-control" (change)="calcularImc($event)"
-                          min="0"
-                          />
-                        </div>
-            
-                      </div>
-                    </div>
-                    <div class="mb15 col-4 two-digits">
-                      <div class="row align-items-center">
-                        <div class="col label-exam">
-                          <label style="display: block;">Indice Masa Corporal</label>
-                        </div>
-                        <div class="col-auto">
-                          <input type="number" formControlName="imc" class="form-control" />
-                        </div>
-            
-                      </div>
-                    </div>
-                  </div>
+          <div class="mb15  col-4">
+            <label style="display: block;">Presión arterial diastólica</label>
+            <input type="number" class="form-control" formControlName="tensionArterialDiastolica"
+              (change)="calcularMedia($event)" min="0" />
+          </div>
 
-                <hr>
-
-                <div class="row " style="display: flex; justify-content: space-between; align-items: center;">
-
-                    <div class="mb15 col-2">
-            
-                      <label style="display: block;">Saturación de 02</label>
-            
-                      <input type="number" class="form-control" formControlName="saturacion02" 
-                      min="0"
-                      />
-            
-            
-                    </div>
-                    <div class="mb15 col-2">
-                      <label style="display: block;">Perimetro Abdominal</label>
-                      <input type="number" formControlName="perimetro" class="form-control" 
-                      min="0"
-                      />
-                    </div>
-                    <div class="mb15 col-2">
-                      <label style="display: block;">Estado de piel</label>
-                      <input type="text" class="form-control" formControlName="colorPiel" />
-                    </div>
-                    <div class="mb15 col-2">
-                      <label style="display: block;">Estado de hidratación</label>
-                      <input type="text" class="form-control" formControlName="estadoHidratacion" />
-                    </div>
-                    <div class="mb15 col-2">
-                      <label style="display: block;">Glucometria</label>
-                      <input type="text" class="form-control" formControlName="glucometria" />
-                    </div>
-                  </div>
-
-                <div style="display: flex; justify-content: end; margin: 12px;">
-
-                    <p-button label="Guardar" type="submit" severity="info"
-                        [disabled]="examenFisico.invalid" />
-                </div>
-
-            </form>
+          <div class="mb15 col-4">
+            <label style="display: block;">Presión arterial media </label>
+            <input type="number" formControlName="presionMedia" class="form-control" />
+          </div>
         </div>
+
+        <div class="row align-items-center" style="margin-top: 12px;">
+          <div class="mb15 col-4 two-digits">
+            <label style="display: block;">Frecuencia cardiaca</label>
+            <input type="number" class="form-control" formControlName="frecuenciaCardiaca" min="0" />
+          </div>
+          <div class="mb15 col-4 two-digits">
+            <label style="display: block;">Frecuencia Respiratoria</label>
+            <div class="col-auto">
+              <input type="number" class="form-control" formControlName="frecuenciaRespiratoria" min="0" />
+            </div>
+          </div>
+
+          <div class="mb15 col-4 two-digits">
+            <label style="display: block;">Temperatura</label>
+            <input type="number" formControlName="temperatura" class="form-control" min="0" />
+          </div>
+        </div>
+
+        <div class="row align-items-center" style="margin-top: 12px;">
+          <div class="mb15 col-4">
+            <label style="display: block;">Peso (kg)</label>
+            <input type="number" class="form-control" formControlName="peso"
+              [value]="this.examenFisico.get('peso')?.value" min="0" />
+          </div>
+          <div class="mb15 col-4">
+            <label style="display: block;">Talla (cms)</label>
+            <input type="number" formControlName="talla" class="form-control" (change)="calcularImc($event)" min="0" />
+          </div>
+          <div class="mb15 col-4">
+            <label style="display: block;">Indice Masa Corporal</label>
+            <input type="number" formControlName="imc" class="form-control" />
+          </div>
+        </div>
+
+        <div class="row " style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
+
+          <div class="mb15 col-2">
+
+            <label style="display: block;">Saturación de 02</label>
+
+            <input type="number" class="form-control" formControlName="saturacion02" min="0" />
+
+
+          </div>
+          <div class="mb15 col-2">
+            <label style="display: block;">Perimetro Abdominal</label>
+            <input type="number" formControlName="perimetro" class="form-control" min="0" />
+          </div>
+          <div class="mb15 col-2">
+            <label style="display: block;">Estado de piel</label>
+            <input type="text" class="form-control" formControlName="colorPiel" />
+          </div>
+          <div class="mb15 col-2">
+            <label style="display: block;">Estado de hidratación</label>
+            <input type="text" class="form-control" formControlName="estadoHidratacion" />
+          </div>
+          <div class="mb15 col-2">
+            <label style="display: block;">Glucometria</label>
+            <input type="text" class="form-control" formControlName="glucometria" />
+          </div>
+        </div>
+
+        <hr>
+
+
+        <div class="row" style="margin-top: 12px;">
+          <div class="row" style="display: flex; justify-content: center; align-items: center;">
+            <h6>
+              <strong>
+                Exploracion: 
+              </strong>
+              </h6>
+          </div>
+          <div class="col-4" style="margin-top: 9px;">
+            <label for="swValoracionGeneral">Valoracion General: </label>
+          </div>
+          <div class="col-4">
+            <label for="swValoracionGeneral" style="display: block;">{{this.examenFisico.value.swValoracionGeneral ===
+              true ? 'Si' : 'No'}}</label>
+            <p-toggleswitch formControlName="swValoracionGeneral" />
+          </div>
+
+          <div class="col-4">
+            <label for="ValoracionGeneral">Ampliacion: </label>
+            <input type="text" pInputText id="ValoracionGeneral" formControlName="ValoracionGeneral"
+              placeholder="Ampliacion" />
+          </div>
+        </div>
+        <hr>
+
+        <div class="row" style="margin-top: 9px;">
+          <div class="col-4">
+            <label for="swOrofaringeYcuello">Orofaringe Y cuello: </label>
+          </div>
+          <div class="col-4">
+            <label for="swOrofaringeYcuello" style="display: block;">{{this.examenFisico.value.swOrofaringeYcuello ===
+              true ? 'Si' : 'No'}}</label>
+            <p-toggleswitch formControlName="swOrofaringeYcuello" />
+          </div>
+
+          <div class="col-4">
+            <label for="orofaringeYcuello">Ampliacion: </label>
+            <input type="text" pInputText id="orofaringeYcuello" formControlName="orofaringeYcuello"
+              placeholder="Ampliacion" />
+          </div>
+        </div>
+        <hr>
+
+        <div class="row" style="margin-top: 9px;">
+          <div class="col-4">
+            <label for="swPiel">Piel: </label>
+          </div>
+          <div class="col-4">
+            <label for="swPiel" style="display: block;">{{this.examenFisico.value.swPiel ===
+              true ? 'Si' : 'No'}}</label>
+            <p-toggleswitch formControlName="swPiel" />
+          </div>
+
+          <div class="col-4">
+            <label for="Piel">Ampliacion: </label>
+            <input type="text" pInputText id="Piel" formControlName="Piel"
+              placeholder="Ampliacion" />
+          </div>
+        </div>
+        <hr>
+
+        <div class="row" style="margin-top: 9px;">
+          <div class="col-4">
+            <label for="swCardioRespiratorio">Cardio Respiratorio: </label>
+          </div>
+          <div class="col-4">
+            <label for="swCardioRespiratorio" style="display: block;">{{this.examenFisico.value.swCardioRespiratorio ===
+              true ? 'Si' : 'No'}}</label>
+            <p-toggleswitch formControlName="swCardioRespiratorio" />
+          </div>
+
+          <div class="col-4">
+            <label for="CardioRespiratorio">Ampliacion: </label>
+            <input type="text" pInputText id="CardioRespiratorio" formControlName="CardioRespiratorio"
+              placeholder="Ampliacion" />
+          </div>
+        </div>
+        <hr>
+
+        <div class="row" style="margin-top: 9px;">
+          <div class="col-4">
+            <label for="swMamas">Mamas: </label>
+          </div>
+          <div class="col-4">
+            <label for="swMamas" style="display: block;">{{this.examenFisico.value.swMamas ===
+              true ? 'Si' : 'No'}}</label>
+            <p-toggleswitch formControlName="swMamas" />
+          </div>
+
+          <div class="col-4">
+            <label for="Mamas">Ampliacion: </label>
+            <input type="text" pInputText id="Mamas" formControlName="Mamas"
+              placeholder="Ampliacion" />
+          </div>
+        </div>
+        <hr>
+
+        <div class="row" style="margin-top: 9px;">
+          <div class="col-4">
+            <label for="swAbdomen">Abdomen: </label>
+          </div>
+          <div class="col-4">
+            <label for="swAbdomen" style="display: block;">{{this.examenFisico.value.swAbdomen ===
+              true ? 'Si' : 'No'}}</label>
+            <p-toggleswitch formControlName="swAbdomen" />
+          </div>
+
+          <div class="col-4">
+            <label for="Abdomen">Ampliacion: </label>
+            <input type="text" pInputText id="Abdomen" formControlName="Abdomen"
+              placeholder="Ampliacion" />
+          </div>
+        </div>
+        <hr>
+
+        <div class="row" style="margin-top: 9px;">
+          <div class="col-4">
+            <label for="swGenitales">Genitales: </label>
+          </div>
+          <div class="col-4">
+            <label for="swGenitales" style="display: block;">{{this.examenFisico.value.swGenitales ===
+              true ? 'Si' : 'No'}}</label>
+            <p-toggleswitch formControlName="swGenitales" />
+          </div>
+
+          <div class="col-4">
+            <label for="Genitales">Ampliacion: </label>
+            <input type="text" pInputText id="Genitales" formControlName="Genitales"
+              placeholder="Ampliacion" />
+          </div>
+        </div>
+        <hr>
+
+        <div class="row" style="margin-top: 9px;">
+          <div class="col-4">
+            <label for="swExtremidades">Extremidades: </label>
+          </div>
+          <div class="col-4">
+            <label for="swExtremidades" style="display: block;">{{this.examenFisico.value.swExtremidades ===
+              true ? 'Si' : 'No'}}</label>
+            <p-toggleswitch formControlName="swExtremidades" />
+          </div>
+
+          <div class="col-4">
+            <label for="Genitales">Ampliacion: </label>
+            <input type="text" pInputText id="Genitales" formControlName="Genitales"
+              placeholder="Ampliacion" />
+          </div>
+        </div>
+        <hr>
+
+        <div class="row" style="margin-top: 9px;">
+          <div class="col-4">
+            <label for="swNeurologico">Neurologico: </label>
+          </div>
+          <div class="col-4">
+            <label for="swNeurologico" style="display: block;">{{this.examenFisico.value.swNeurologico ===
+              true ? 'Si' : 'No'}}</label>
+            <p-toggleswitch formControlName="swNeurologico" />
+          </div>
+
+          <div class="col-4">
+            <label for="Neurologico">Ampliacion: </label>
+            <input type="text" pInputText id="Neurologico" formControlName="Neurologico"
+              placeholder="Ampliacion" />
+          </div>
+        </div>
+        <hr>
+
+        <div class="row" style="margin-top: 9px;">
+          <div class="col-4">
+            <label for="swsistemaCardiovascular">sistema Cardio vascular: </label>
+          </div>
+          <div class="col-4">
+            <label for="swsistemaCardiovascular" style="display: block;">{{this.examenFisico.value.swsistemaCardiovascular ===
+              true ? 'Si' : 'No'}}</label>
+            <p-toggleswitch formControlName="swsistemaCardiovascular" />
+          </div>
+
+          <div class="col-4">
+            <label for="sistemaCardiovascular">Ampliacion: </label>
+            <input type="text" pInputText id="sistemaCardiovascular" formControlName="sistemaCardiovascular"
+              placeholder="Ampliacion" />
+          </div>
+        </div>
+        <hr>
+
+        <div class="row" style="margin-top: 9px;">
+          <div class="col-4">
+            <label for="swsistemaRespiratorio">Sistema Respiratorio: </label>
+          </div>
+          <div class="col-4">
+            <label for="swsistemaRespiratorio" style="display: block;">{{this.examenFisico.value.swsistemaRespiratorio ===
+              true ? 'Si' : 'No'}}</label>
+            <p-toggleswitch formControlName="swsistemaRespiratorio" />
+          </div>
+
+          <div class="col-4">
+            <label for="sistemaRespiratorio">Ampliacion: </label>
+            <input type="text" pInputText id="sistemaRespiratorio" formControlName="sistemaRespiratorio"
+              placeholder="Ampliacion" />
+          </div>
+        </div>
+        <hr>
+
+
+
+        <div style="display: flex; justify-content: end; margin: 12px;">
+          <p-button label="Guardar" type="submit" severity="info" [disabled]="examenFisico.invalid" />
+        </div>
+
+      </form>
     </div>
+  </div>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderInfoPacienteComponent } from "../../shared/header-info-paciente/header-info-paciente.component";
 import { CommonModule } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
@@ -17,13 +17,18 @@ import { HabitosComponent } from '@shared/habitos/habitos.component';
 import { RevisionSistemasComponent } from '@shared/revision-sistemas/revision-sistemas.component';
 import { AntecedentesInmunologicosComponent } from '@shared/antecedentes-inmunologicos/antecedentes-inmunologicos.component';
 import { ExamenFisicoComponent } from '@shared/examen-fisico/examen-fisico.component';
-
+import { AnexoEnfasisOsteomuscularComponent } from '@shared/anexo-enfasis-osteomuscular/anexo-enfasis-osteomuscular.component';
+import { AnexoPruebasVestibularesComponent } from '@shared/anexo-pruebas-vestibulares/anexo-pruebas-vestibulares.component';
+import { AnexoDermatologicoComponent } from '@shared/anexo-dermatologico/anexo-dermatologico.component';
+import { ConceptoOcupacionalComponent } from '@shared/concepto-ocupacional/concepto-ocupacional.component';
+import { TextareaModule } from 'primeng/textarea';
+import { DiagnosticosComponent } from '@shared/diagnosticos/diagnosticos.component';
 
 @Component({
   selector: 'app-historia-clinica-laboral',
   standalone: true,
   imports: [HeaderInfoPacienteComponent, CommonModule, ReactiveFormsModule, DialogModule,
-    SelectModule, InputTextModule, ButtonModule, TableModule, CardModule, AntecedentesComponent, AntecedentesFamiliaresComponent, EnfermedadesLaboralesComponent, AntecedentesOcupacionalesComponent, HabitosComponent, RevisionSistemasComponent, AntecedentesInmunologicosComponent,ExamenFisicoComponent],
+    SelectModule, InputTextModule, ButtonModule, TableModule, CardModule, AntecedentesComponent, AntecedentesFamiliaresComponent, EnfermedadesLaboralesComponent, AntecedentesOcupacionalesComponent, HabitosComponent, RevisionSistemasComponent, AntecedentesInmunologicosComponent, ExamenFisicoComponent, AnexoEnfasisOsteomuscularComponent, AnexoPruebasVestibularesComponent, AnexoDermatologicoComponent, ConceptoOcupacionalComponent,TextareaModule, DiagnosticosComponent],
   templateUrl: './historia-clinica-laboral.component.html',
   styleUrl: './historia-clinica-laboral.component.css'
 })
@@ -33,6 +38,7 @@ export class HistoriaClinicaLaboralComponent implements OnInit {
   selectedRow!: any;
   showForm = false;
   patientFound!: any;
+  hcForm!: FormGroup;
   antecedentesArray: any[] = []
   antecedentesFamiliaresArray: any[] = []
   antecedentesOcupacionalesArray: any[] = []
@@ -40,6 +46,10 @@ export class HistoriaClinicaLaboralComponent implements OnInit {
   habitosObject: any[] = []
   revisionSistemasObject: any[] = []
   antecedentesInmunoObject: any[] = []
+  examenFisicoObject: any[] = []
+  anexoOsteoMuscularObject: any[] = []
+  anexoVestibularObject: any[] = []
+  ConceptosConceptualesObject: any[] = []
 
   constructor(
     private aspiranteService: AspirantesService,
@@ -65,6 +75,21 @@ export class HistoriaClinicaLaboralComponent implements OnInit {
       { field: "Empresa", header: "Empresa Id" },
     ];
     this.loadAspirantes();
+    this.initForm();
+  }
+
+initForm(): FormGroup {
+    return this.hcForm = this.fb.group({
+      txtAnalisis: ['', Validators.required],
+      txtRecomendaciones: ['', Validators.required],
+      txtVigencias: ['', Validators.required],
+      txtInclusion: ['', Validators.required],
+      txtNombreProfesional: ['', Validators.required],
+      txtNumDocumento: ['', Validators.required],
+      txtRegistroMedico: ['', Validators.required],
+      txtLicencia: ['', Validators.required],
+      txtFirma: ['', Validators.required],
+    });
   }
 
   loadAspirantes() {
@@ -110,6 +135,16 @@ export class HistoriaClinicaLaboralComponent implements OnInit {
       this.revisionSistemasObject = [value]
     } else if (type === 'antecedentesInmuno') {
       this.antecedentesInmunoObject = [value]
+    } else if (type === 'examenFisico') {
+      this.examenFisicoObject = [value]
+    } else if (type === 'anexoOsteoMuscular') {
+      this.anexoOsteoMuscularObject = [value]
+    } else if (type === 'anexoVestibulares') {
+      this.anexoVestibularObject = [value]
+    } else if (type === 'coneptoOcupacional') {
+      this.ConceptosConceptualesObject = [value]
     }
   }
+
+  onSubmit(){}
 }

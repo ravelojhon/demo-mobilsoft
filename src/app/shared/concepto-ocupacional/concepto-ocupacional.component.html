@@ -1,0 +1,106 @@
+<div class="card" style="margin-top: 12px;">
+    <div class="card-header">
+        <div class="shadow-div-icon">-</div>
+        <div class="div-icon"><i class="pi pi-id-card"></i></div>
+        <h5><i class="pi pi-user"></i> Concepto Ocupacional</h5>
+    </div>
+    <div class="card-body p-4">
+        <div class="container">
+            <form [formGroup]="conceptoForm" (ngSubmit)="onSubmit()">
+                <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                    <div class="col-12">
+                        <h6>
+                            <strong>
+                                Ingreso y Periodicos:
+                            </strong>
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 12px;">
+                    <div class="col-4">
+                        <p-radiobutton name="radConceptoIngreso" value="Apto para el Cargo" inputId="ingredient1"
+                            formControlName="radConceptoIngreso" />
+                        <label for="ingredient1" class="ml-2">Apto para el Cargo</label>
+                    </div>
+
+                    <div class="col-4">
+                        <p-radiobutton name="radConceptoIngreso" value="Apto con restricciones para el Cargo"
+                            inputId="ingredient2" formControlName="radConceptoIngreso" />
+                        <label for="ingredient2" class="ml-2">Apto con restricciones para el Cargo</label>
+                    </div>
+
+                    <div class="col-4">
+                        <p-radiobutton name="radConceptoIngreso" value="Aplazado" inputId="ingredient3"
+                            formControlName="radConceptoIngreso" />
+                        <label for="ingredient3" class="ml-2">Aplazado</label>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                    <div class="col-12">
+                        <h6>
+                            <strong>
+                                Retiro:
+                            </strong>
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 12px;">
+                    <div class="col-4">
+                        <p-radiobutton name="radRetiro" value="Satisfactorio" inputId="ingredient4"
+                            formControlName="radRetiro" />
+                        <label for="ingredient4" class="ml-2">Satisfactorio</label>
+                    </div>
+
+                    <div class="col-4">
+                        <p-radiobutton name="radRetiro" value="No Satisfactorio"
+                            inputId="ingredient5" formControlName="radRetiro" />
+                        <label for="ingredient5" class="ml-2">No Satisfactorio</label>
+                    </div>
+
+                    <div class="col-4">
+                        <p-radiobutton name="radRetiro" value="Aplazado" inputId="ingredient6"
+                            formControlName="radRetiro" />
+                        <label for="ingredient6" class="ml-2">Aplazado</label>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                    <div class="col-12">
+                        <h6>
+                            <strong>
+                                PostIncapacidad:
+                            </strong>
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 12px;">
+                    <div class="col-4">
+                        <p-radiobutton name="radPostIncapacidad" value="Reintegro sin recomendaciones ni restricciones" inputId="ingredient7"
+                            formControlName="radPostIncapacidad" />
+                        <label for="ingredient7" class="ml-2">Reintegro sin recomendaciones ni restricciones</label>
+                    </div>
+
+                    <div class="col-4">
+                        <p-radiobutton name="radPostIncapacidad" value="Reintegro con recomendaciones y/o restricciones"
+                            inputId="ingredient8" formControlName="radPostIncapacidad" />
+                        <label for="ingredient8" class="ml-2">Reintegro con recomendaciones y/o restricciones</label>
+                    </div>
+
+                    <div class="col-4">
+                        <p-radiobutton name="radPostIncapacidad" value="Aplazado" inputId="ingredient9"
+                            formControlName="radPostIncapacidad" />
+                        <label for="ingredient9" class="ml-2">Aplazado</label>
+                    </div>
+                </div>
+                <hr>
+
+            </form>
+        </div>
+    </div>
+</div>

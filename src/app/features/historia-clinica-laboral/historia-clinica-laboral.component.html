@@ -28,8 +28,8 @@
     </div>
 </div>
 
-<p-dialog [modal]="true" [(visible)]="showForm" [style]="{ width: '90vw', maxWidth: '1200px', height: 'auto' }">
-    <form>
+<p-dialog [modal]="true" [(visible)]="showForm" [style]="{ width: '90vw', maxWidth: '1500px', height: 'auto' }">
+    <form [formGroup]="hcForm" (ngSubmit)="onSubmit()">
         <div class="header_modal">
             <h1>Crear Historia Clinica</h1>
         </div>
@@ -78,9 +78,155 @@
                 </div>
 
                 <div class="col-12">
-                    <app-examen-fisico></app-examen-fisico>
+                    <app-examen-fisico
+                    (examenFisicoOutput)="setform('examenFisico', $event)"
+                    ></app-examen-fisico>
                 </div>
+
+                <div class="col-12">
+                    <app-anexo-enfasis-osteomuscular
+                    (anexoOutput)="setform('anexoOsteoMuscular', $event)"
+                    ></app-anexo-enfasis-osteomuscular>
+                </div>
+
+                <div class="col-12">
+                    <app-anexo-dermatologico
+                    (anexoDermatologicoOutput)="setform('anexoDermatologico', $event)"
+                    ></app-anexo-dermatologico>
+                </div>
+
+                <div class="col-12">
+                    <app-anexo-pruebas-vestibulares
+                    (anexoOutput)="setform('anexoVestibulares', $event)"
+                    ></app-anexo-pruebas-vestibulares>
+                </div>
+
+                <div class="col-12">
+                    <app-diagnosticos
+                    (conceptoOutput)="setform('coneptoOcupacional', $event)"
+                    ></app-diagnosticos>
+                </div>
+                
+
+                <div class="col-12">
+                    <app-concepto-ocupacional
+                    (conceptoOutput)="setform('coneptoOcupacional', $event)"
+                    ></app-concepto-ocupacional>
+                </div>
+                
+               
+                
+
+
             </div>
+
+            <div class="card" style="margin-top: 12px;">
+                <div class="card-header">
+                  <div class="shadow-div-icon">-</div>
+                  <div class="div-icon"><i class="pi pi-id-card"></i></div>
+                  <h5><i class="pi pi-user"></i> Analisis</h5>
+                </div>
+                <div class="card-body p-4">
+                  <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <textarea rows="5" cols="30" pTextarea formControlName="txtAnalisis" id="txtAnalisis" style="width: 100%;"></textarea>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="card" style="margin-top: 12px;">
+                <div class="card-header">
+                  <div class="shadow-div-icon">-</div>
+                  <div class="div-icon"><i class="pi pi-id-card"></i></div>
+                  <h5><i class="pi pi-user"></i> RECOMENDACIONES Y/O RESTRICCIONES MEDICO-OCUPACIONALES:</h5>
+                </div>
+                <div class="card-body p-4">
+                  <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <textarea rows="5" cols="30" pTextarea formControlName="txtRecomendaciones" id="txtRecomendaciones" style="width: 100%;"></textarea>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-top: 12px;">
+                <div class="card-header">
+                  <div class="shadow-div-icon">-</div>
+                  <div class="div-icon"><i class="pi pi-id-card"></i></div>
+                  <h5><i class="pi pi-user"></i> VIGENCIA DE RECOMENDACIONES O RESTRICCIONES MEDICO-OCUPACIONALES:</h5>
+                </div>
+                <div class="card-body p-4">
+                  <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <textarea rows="5" cols="30" pTextarea formControlName="txtVigencias" id="txtVigencias" style="width: 100%;"></textarea>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-top: 12px;">
+                <div class="card-header">
+                  <div class="shadow-div-icon">-</div>
+                  <div class="div-icon"><i class="pi pi-id-card"></i></div>
+                  <h5><i class="pi pi-user"></i> INCLUSIÓN A PROGRAMAS DE VIGILANCIA EPIDEMIOLÓGICA:</h5>
+                </div>
+                <div class="card-body p-4">
+                  <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <textarea rows="5" cols="30" pTextarea formControlName="txtInclusion" id="txtInclusion" style="width: 100%;"></textarea>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+
+              <div class="card" style="margin-top: 12px;">
+                <div class="card-header">
+                  <div class="shadow-div-icon">-</div>
+                  <div class="div-icon"><i class="pi pi-id-card"></i></div>
+                  <h5><i class="pi pi-user"></i> PROFESIONAL QUE EMITE EL CONCEPTO OCUPACIONAL:</h5>
+                </div>
+                <div class="card-body p-4">
+                  <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="txtNombreProfesional" style="display: block;">NOMBRE:</label>
+                            <input type="text" pInputText id="txtNombreProfesional" formControlName="txtNombreProfesional" />
+                        </div>
+
+                        <div class="col-2">
+                            <label for="txtNumDocumento" style="display: block;">DOCUMENTO:</label>
+                            <input type="text" pInputText id="txtNumDocumento" formControlName="txtNumDocumento" />
+                        </div>
+
+                        <div class="col-3">
+                            <label for="txtRegistroMedico" style="display: block;">REGISTRO MEDICO:</label>
+                            <input type="text" pInputText id="txtRegistroMedico" formControlName="txtRegistroMedico" />
+                        </div>
+
+                        <div class="col-3">
+                            <label for="txtLicencia" style="display: block;">LICENCIA DE SALUD OCUPACIONAL:</label>
+                            <input type="text" pInputText id="txtLicencia" formControlName="txtLicencia" />
+                        </div>
+
+                        <div class="col-1">
+                            <label for="txtFirma" style="display: block;">FIRMA:</label>
+                            <input type="text" pInputText id="txtFirma" formControlName="txtFirma" />
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+            
         </div>
     </form>
        

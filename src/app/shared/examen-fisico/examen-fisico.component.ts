@@ -15,7 +15,7 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
 export class ExamenFisicoComponent implements OnInit{
   examenFisico!: FormGroup;
 
-  @Output() revisionSistemaOutPut = new EventEmitter<any>();
+  @Output() examenFisicoOutput = new EventEmitter<any>();
   constructor(
     private fb: FormBuilder
   ) { }
@@ -33,20 +33,51 @@ export class ExamenFisicoComponent implements OnInit{
     return this.examenFisico = this.fb.group({
       tensionArterialDiastolica: ['', Validators.required],
       tensionArterialSistolica: ['', Validators.required],
-      tensionArterialMedia: ['', Validators.required],
       frecuenciaCardiaca: ['', Validators.required],
       frecuenciaRespiratoria: ['', Validators.required],
       temperatura: ['', Validators.required],
       saturacion02: ['', Validators.required],
       peso: ['', Validators.required],
       talla: ['', Validators.required],
-      nivelConciencia: ['', Validators.required],
       colorPiel: ['', Validators.required],
       estadoHidratacion: ['', Validators.required],
       perimetro: ['', Validators.required],
-      presionMedia: ['', Validators.required],
-      imc: ['', Validators.required],
+      presionMedia: [{value:0, disabled:true}, Validators.required],
+      imc: [{value:0, disabled:true}, Validators.required],
       glucometria:['', Validators.required],
+
+      swValoracionGeneral:[false],
+      ValoracionGeneral: ['Normal'],
+
+      swOrofaringeYcuello:[false],
+      orofaringeYcuello : ['Normal'],
+
+      swPiel:[false],
+      Piel: ['Normal'],
+
+      swCardioRespiratorio:[false],
+      CardioRespiratorio: ['Normal'],
+
+      swMamas:[false],
+      Mamas: ['Normal'],
+
+      swAbdomen:[false],
+      Abdomen: ['Normal'],
+
+      swGenitales:[false],
+      Genitales: ['Normal'],
+
+      swExtremidades:[false],
+      Extremidades: ['Normal'],
+
+      swNeurologico:[false],
+      Neurologico:['Normal'],
+
+      swsistemaCardiovascular:[false],
+      sistemaCardiovascular: ['Normal'],
+
+      swsistemaRespiratorio:[false],
+      sistemaRespiratorio: ['Normal'],
     });
   }
 
@@ -75,6 +106,6 @@ export class ExamenFisicoComponent implements OnInit{
   }
 
   onSubmit(){
-    this.revisionSistemaOutPut.emit(this.examenFisico.value);
+    this.examenFisicoOutput.emit(this.examenFisico.value);
   }
 }

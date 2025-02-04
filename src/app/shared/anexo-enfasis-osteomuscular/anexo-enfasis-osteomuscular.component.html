@@ -1,0 +1,144 @@
+<div class="card" style="margin-top: 12px;">
+    <div class="card-header">
+      <div class="shadow-div-icon">-</div>
+      <div class="div-icon"><i class="pi pi-id-card"></i></div>
+      <h5><i class="pi pi-user"></i> Anexo Enfasis OsteoMuscular</h5>
+    </div>
+    <div class="card-body p-4">
+      <div class="container">
+        <form [formGroup]="anexoForm" (ngSubmit)="onSubmit()">
+  
+          <div class="row" style="margin-top: 12px;">
+            <div class="col-4" style="margin-top: 9px;">
+              <label for="swOsteoMuscular">OSTEOMUSCULAR: </label>
+            </div>
+            <div class="col-4">
+              <label for="swOsteoMuscular" style="display: block;">{{this.anexoForm.value.swOsteoMuscular ===
+                true ? 'Si' : 'No'}}</label>
+              <p-toggleswitch formControlName="swOsteoMuscular" />
+            </div>
+  
+            <div class="col-4">
+              <label for="OsteoMuscular">Ampliacion: </label>
+              <input type="text" pInputText id="OsteoMuscular" formControlName="OsteoMuscular"
+                placeholder="Ampliacion" />
+            </div>
+          </div>
+          <hr>
+  
+          <div class="row" style="margin-top: 9px;">
+            <div class="col-4">
+              <label for="swMarcha">MARCHA: </label>
+            </div>
+            <div class="col-4">
+              <label for="swMarcha" style="display: block;">{{this.anexoForm.value.swMarcha ===
+                true ? 'Si' : 'No'}}</label>
+              <p-toggleswitch formControlName="swMarcha" />
+            </div>
+  
+            <div class="col-4">
+              <label for="Marcha">Ampliacion: </label>
+              <input type="text" pInputText id="Marcha" formControlName="Marcha"
+                placeholder="Ampliacion" />
+            </div>
+          </div>
+          <hr>
+  
+          <div class="row" style="margin-top: 9px;">
+            <div class="col-4">
+              <label for="swMMSS">ARCOS DE MOVIMIENTOS MMSS: </label>
+            </div>
+            <div class="col-4">
+              <label for="swMMSS" style="display: block;">{{this.anexoForm.value.swMMSS ===
+                true ? 'Si' : 'No'}}</label>
+              <p-toggleswitch formControlName="swMMSS" />
+            </div>
+  
+            <div class="col-4">
+              <label for="MMSS">Ampliacion: </label>
+              <input type="text" pInputText id="MMSS" formControlName="MMSS"
+                placeholder="Ampliacion" />
+            </div>
+          </div>
+          <hr>
+  
+          <div class="row" style="margin-top: 9px;">
+            <div class="col-4">
+              <label for="swMMII">ARCOS DE MOVIMIENTOS MMII: </label>
+            </div>
+            <div class="col-4">
+              <label for="swMMII" style="display: block;">{{this.anexoForm.value.swMMII ===
+                true ? 'Si' : 'No'}}</label>
+              <p-toggleswitch formControlName="swMMII" />
+            </div>
+  
+            <div class="col-4">
+              <label for="MMII">Ampliacion: </label>
+              <input type="text" pInputText id="MMII" formControlName="MMII"
+                placeholder="Ampliacion" />
+            </div>
+          </div>
+          <hr>
+  
+          <div class="row" style="margin-top: 9px;">
+            <div class="col-4">
+              <label for="swColumna">ARCOS DE MOVIMIENTOS COLUMNA: </label>
+            </div>
+            <div class="col-4">
+              <label for="swColumna" style="display: block;">{{this.anexoForm.value.swColumna ===
+                true ? 'Si' : 'No'}}</label>
+              <p-toggleswitch formControlName="swColumna" />
+            </div>
+  
+            <div class="col-4">
+              <label for="Columna">Ampliacion: </label>
+              <input type="text" pInputText id="Columna" formControlName="Columna"
+                placeholder="Ampliacion" />
+            </div>
+          </div>
+          <hr>
+  
+          <div class="row" style="margin-top: 9px;">
+            <div class="col-4">
+              <label for="swFuerza">FUERZA: </label>
+            </div>
+            <div class="col-4">
+              <label for="swFuerza" style="display: block;">{{this.anexoForm.value.swFuerza ===
+                true ? 'Si' : 'No'}}</label>
+              <p-toggleswitch formControlName="swFuerza" />
+            </div>
+  
+            <div class="col-4">
+              <label for="Fuerza">Ampliacion: </label>
+              <input type="text" pInputText id="Fuerza" formControlName="Fuerza"
+                placeholder="Ampliacion" />
+            </div>
+          </div>
+          <hr>
+  
+          <div class="row" style="margin-top: 9px;">
+            <div class="col-4">
+              <label for="swFlexibilidad">FLEXIBILIDAD: </label>
+            </div>
+            <div class="col-4">
+              <label for="swFlexibilidad" style="display: block;">{{this.anexoForm.value.swFlexibilidad ===
+                true ? 'Si' : 'No'}}</label>
+              <p-toggleswitch formControlName="swFlexibilidad" />
+            </div>
+  
+            <div class="col-4">
+              <label for="Flexibilidad">Ampliacion: </label>
+              <input type="text" pInputText id="Flexibilidad" formControlName="Flexibilidad"
+                placeholder="Ampliacion" />
+            </div>
+          </div>
+          <hr>
+  
+          <div style="display: flex; justify-content: end; margin: 12px;">
+            <p-button label="Guardar" type="submit" severity="info" [disabled]="anexoForm.invalid" />
+          </div>
+  
+        </form>
+      </div>
+    </div>
+  </div>

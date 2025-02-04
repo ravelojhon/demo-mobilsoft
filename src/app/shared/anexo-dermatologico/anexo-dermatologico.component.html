@@ -1,0 +1,38 @@
+<div class="card" style="margin-top: 12px;">
+    <div class="card-header">
+      <div class="shadow-div-icon">-</div>
+      <div class="div-icon"><i class="pi pi-id-card"></i></div>
+      <h5><i class="pi pi-user"></i> Anexo Enfasis Dermatologico</h5>
+    </div>
+    <div class="card-body p-4">
+      <div class="container">
+        <form [formGroup]="anexoForm" (ngSubmit)="onSubmit()">
+  
+          <div class="row" style="margin-top: 12px;">
+            <div class="col-4" style="margin-top: 9px;">
+              <label for="Parametro" style="display: block;">Parametro: </label>
+              <input type="text" pInputText id="Parametro" formControlName="Parametro"
+              placeholder="Ampliacion" />
+            </div>
+            <div class="col-4">
+              <label for="swParametro" style="display: block; margin-top: 15px;">{{this.anexoForm.value.swParametro ===
+                true ? 'Si' : 'No'}}</label>
+              <p-toggleswitch formControlName="swParametro" />
+            </div>
+  
+            <div class="col-4">
+              <label for="ParametroObs">Ampliacion: </label>
+              <input type="text" pInputText id="ParametroObs" formControlName="ParametroObs"
+                placeholder="Ampliacion" />
+            </div>
+          </div>
+          <hr>
+  
+          <div style="display: flex; justify-content: end; margin: 12px;">
+            <p-button label="Guardar" type="submit" severity="info" [disabled]="anexoForm.invalid" />
+          </div>
+  
+        </form>
+      </div>
+    </div>
+  </div>
