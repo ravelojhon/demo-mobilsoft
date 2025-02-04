@@ -1,0 +1,81 @@
+<div class="card" style="margin-top: 12px;">
+    <div class="card-header">
+        <div class="shadow-div-icon">-</div>
+        <div class="div-icon"><i class="pi pi-id-card"></i></div>
+        <h5><i class="pi pi-user"></i> Antecedentes Inmunologicos</h5>
+    </div>
+    <div class="card-body p-4">
+        <div class="container">
+            <form [formGroup]="antecedentesInmunoForm" (ngSubmit)="onSubmit()">
+                <div class="row" style="margin-top: 12px;">
+                    <div class="col-4">
+                        <label for="swVacunaTetanos">Vacuna Contra Tetanos: </label>
+
+                    </div>
+                    <div class="col-4">
+                        <label for="swVacunaTetanos"
+                            style="display: block;">{{this.antecedentesInmunoForm.value.swVacunaTetanos ===
+                            true ? 'Si' : 'No'}}</label>
+                        <p-toggleswitch formControlName="swVacunaTetanos" />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="numDosisVacunaTetanos">Numero de Dosis: </label>
+                        <input type="text" pInputText id="numDosisVacunaTetanos"
+                            formControlName="numDosisVacunaTetanos" placeholder="num Dosis" />
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row" style="margin-top: 12px;">
+                    <div class="col-4">
+                        <label for="swVacunaHepatitis">Vacuna Contra Hepatitis B: </label>
+
+                    </div>
+                    <div class="col-4">
+                        <label for="swVacunaHepatitis"
+                            style="display: block;">{{this.antecedentesInmunoForm.value.swVacunaHepatitis ===
+                            true ? 'Si' : 'No'}}</label>
+                        <p-toggleswitch formControlName="swVacunaHepatitis" />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="numDosisVacunaHepatitis">Ampliacion: </label>
+                        <input type="text" pInputText id="numDosisVacunaHepatitis"
+                            formControlName="numDosisVacunaHepatitis" placeholder="numDosisVacunaHepatitis" />
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row" style="margin-top: 12px;">
+                    <div class="col-4">
+                        <label for="swVacunaCovid19">Covid-19: </label>
+
+                    </div>
+                    <div class="col-4">
+                        <label for="swVacunaCovid19"
+                            style="display: block;">{{this.antecedentesInmunoForm.value.swVacunaCovid19 ===
+                            true ? 'Si' : 'No'}}</label>
+                        <p-toggleswitch formControlName="swVacunaCovid19" />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="numDosisVacunaCovid19">Ampliacion: </label>
+                        <input type="text" pInputText id="numDosisVacunaCovid19"
+                            formControlName="numDosisVacunaCovid19" placeholder="numDosisVacunaCovid19" />
+                    </div>
+                </div>
+
+                <hr>
+
+                <div style="display: flex; justify-content: end; margin: 12px;">
+
+                    <p-button label="Guardar" type="submit" severity="info"
+                        [disabled]="antecedentesInmunoForm.invalid" />
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

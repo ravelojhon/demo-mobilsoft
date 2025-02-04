@@ -65,7 +65,21 @@
                     ></app-habitos>
                 </div>
 
+                <div class="col-12">
+                    <app-revision-sistemas
+                    (revisionSistemaOutPut)="setform('revisionSistemas', $event)"
+                    ></app-revision-sistemas>
+                </div>
 
+                <div class="col-12">
+                    <app-antecedentes-inmunologicos
+                    (antecedentesInmunoOutPut)="setform('antecedentesInmuno', $event)"
+                    ></app-antecedentes-inmunologicos>
+                </div>
+
+                <div class="col-12">
+                    <app-examen-fisico></app-examen-fisico>
+                </div>
             </div>
         </div>
     </form>

@@ -14,13 +14,16 @@ import { AntecedentesFamiliaresComponent } from '@shared/antecedentesFamiliares/
 import { EnfermedadesLaboralesComponent } from '@shared/enfermedadesLaborales/enfermedadesLaborales.component';
 import { AntecedentesOcupacionalesComponent } from '@shared/antecedentesOcupacionales/antecedentesOcupacionales.component';
 import { HabitosComponent } from '@shared/habitos/habitos.component';
+import { RevisionSistemasComponent } from '@shared/revision-sistemas/revision-sistemas.component';
+import { AntecedentesInmunologicosComponent } from '@shared/antecedentes-inmunologicos/antecedentes-inmunologicos.component';
+import { ExamenFisicoComponent } from '@shared/examen-fisico/examen-fisico.component';
 
 
 @Component({
   selector: 'app-historia-clinica-laboral',
   standalone: true,
   imports: [HeaderInfoPacienteComponent, CommonModule, ReactiveFormsModule, DialogModule,
-    SelectModule, InputTextModule, ButtonModule, TableModule, CardModule, AntecedentesComponent, AntecedentesFamiliaresComponent, EnfermedadesLaboralesComponent, AntecedentesOcupacionalesComponent,HabitosComponent],
+    SelectModule, InputTextModule, ButtonModule, TableModule, CardModule, AntecedentesComponent, AntecedentesFamiliaresComponent, EnfermedadesLaboralesComponent, AntecedentesOcupacionalesComponent, HabitosComponent, RevisionSistemasComponent, AntecedentesInmunologicosComponent,ExamenFisicoComponent],
   templateUrl: './historia-clinica-laboral.component.html',
   styleUrl: './historia-clinica-laboral.component.css'
 })
@@ -34,6 +37,9 @@ export class HistoriaClinicaLaboralComponent implements OnInit {
   antecedentesFamiliaresArray: any[] = []
   antecedentesOcupacionalesArray: any[] = []
   enfemedadesLaboralesArray: any[] = []
+  habitosObject: any[] = []
+  revisionSistemasObject: any[] = []
+  antecedentesInmunoObject: any[] = []
 
   constructor(
     private aspiranteService: AspirantesService,
@@ -98,6 +104,12 @@ export class HistoriaClinicaLaboralComponent implements OnInit {
       this.antecedentesOcupacionalesArray = value
     } else if (type === 'enfermedadesLaborales') {
       this.enfemedadesLaboralesArray = value
+    } else if (type === 'habitos') {
+      this.habitosObject = [value]
+    } else if (type === 'revisionSistemas') {
+      this.revisionSistemasObject = [value]
+    } else if (type === 'antecedentesInmuno') {
+      this.antecedentesInmunoObject = [value]
     }
   }
 }

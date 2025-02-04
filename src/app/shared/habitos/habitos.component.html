@@ -6,10 +6,106 @@
     </div>
     <div class="card-body p-4">
         <div class="container">
-            <form>
-                <div class="mb-3">
+            <form [formGroup]="habitosForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="swCigarro">Consumo de Cigarrillo: </label>
+
+                    </div>
+                    <div class="col-3">
+                        <label for="swCigarro" style="display: block;">{{this.habitosForm.value.swCigarro ===
+                            true ? 'Si' : 'No'}}</label>
+                        <p-toggleswitch formControlName="swCigarro" />
+                    </div>
+
+                    <div class="col-3">
+                        <label for="frecuenciaCigarro">Frecuencia: </label>
+                        <input type="text" pInputText id="frecuenciaCigarro" formControlName="frecuenciaCigarro"
+                        placeholder="frecuencia Cigarro" />
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row" style="margin-top: 12px;">
+                    <div class="col-3">
+                        <label for="swAlcohol">Consumo de Alcohol: </label>
+
+                    </div>
+                    <div class="col-3">
+                        <label for="swAlcohol" style="display: block;">{{this.habitosForm.value.swAlcohol ===
+                            true ? 'Si' : 'No'}}</label>
+                        <p-toggleswitch formControlName="swAlcohol" />
+                    </div>
+
+                    <div class="col-3">
+                        <label for="frecuenciaAlcohol">Frecuencia: </label>
+                        <input type="text" pInputText id="frecuenciaAlcohol" formControlName="frecuenciaAlcohol"
+                        placeholder="frecuenciaAlcohol" />
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row" style="margin-top: 12px;">
+                    <div class="col-3">
+                        <label for="swPsicoActivas">Consumo de Sustacias PsicoActivas: </label>
+
+                    </div>
+                    <div class="col-3">
+                        <label for="swPsicoActivas" style="display: block;">{{this.habitosForm.value.swPsicoActivas ===
+                            true ? 'Si' : 'No'}}</label>
+                        <p-toggleswitch formControlName="swPsicoActivas" />
+                    </div>
+
+                    <div class="col-3">
+                        <label for="frecuenciaPsicoActivas">Frecuencia: </label>
+                        <input type="text" pInputText id="frecuenciaPsicoActivas" formControlName="frecuenciaPsicoActivas"
+                        placeholder="frecuenciaPsicoActivas" />
+                    </div>
+
+                    <div class="col-3">
+                        <label for="cualesPsicoActivas">Cuales?: </label>
+                        <input type="text" pInputText id="cualesPsicoActivas" formControlName="cualesPsicoActivas"
+                        placeholder="cualesPsicoActivas" />
+                    </div>
 
                 </div>
+
+                <hr>
+
+                <div class="row" style="margin-top: 12px;">
+                    <div class="col-3">
+                        <label for="swActividadFisica">Actividad Fisica: </label>
+
+                    </div>
+                    <div class="col-3">
+                        <label for="swActividadFisica" style="display: block;">{{this.habitosForm.value.swActividadFisica ===
+                            true ? 'Si' : 'No'}}</label>
+                        <p-toggleswitch formControlName="swActividadFisica" />
+                    </div>
+
+                    <div class="col-3">
+                        <label for="frecuenciaActividad">Frecuencia: </label>
+                        <input type="text" pInputText id="frecuenciaActividad" formControlName="frecuenciaActividad"
+                        placeholder="frecuenciaActividad" />
+                    </div>
+
+                    <div class="col-3">
+                        <label for="cualesActividad">Cuales?: </label>
+                        <input type="text" pInputText id="cualesActividad" formControlName="cualesActividad"
+                        placeholder="cualesActividad" />
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div style="display: flex; justify-content: end; margin: 12px;">
+             
+                    <p-button label="Guardar" type="submit" severity="info" [disabled]="habitosForm.invalid" />
+                  
+                  </div>
+
             </form>
         </div>
     </div>

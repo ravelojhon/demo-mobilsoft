@@ -1,0 +1,118 @@
+<div class="card" style="margin-top: 12px;">
+    <div class="card-header">
+        <div class="shadow-div-icon">-</div>
+        <div class="div-icon"><i class="pi pi-id-card"></i></div>
+        <h5><i class="pi pi-user"></i> Revision Por Sistemas</h5>
+    </div>
+    <div class="card-body p-4">
+        <div class="container">
+            <form [formGroup]="revisionSistemasForm" (ngSubmit)="onSubmit()">
+<h6>HA PRESENTADO SÍNTOMAS EN EL ÚLTIMO MES A NIVEL:</h6>
+                <div class="row" style="margin-top: 12px;">
+                    <div class="col-4">
+                        <label for="swOrganoSentidos">Organo de los Sentidos: </label>
+
+                    </div>
+                    <div class="col-4">
+                        <label for="swOrganoSentidos" style="display: block;">{{this.revisionSistemasForm.value.swOrganoSentidos ===
+                            true ? 'Si' : 'No'}}</label>
+                        <p-toggleswitch formControlName="swOrganoSentidos" />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="ampliacionOrganoSentidos">Ampliacion: </label>
+                        <input type="text" pInputText id="ampliacionOrganoSentidos" formControlName="ampliacionOrganoSentidos"
+                        placeholder="Ampliacion" />
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row" style="margin-top: 12px;">
+                    <div class="col-4">
+                        <label for="swCardiovascular">CardioVascular: </label>
+
+                    </div>
+                    <div class="col-4">
+                        <label for="swCardiovascular" style="display: block;">{{this.revisionSistemasForm.value.swCardiovascular ===
+                            true ? 'Si' : 'No'}}</label>
+                        <p-toggleswitch formControlName="swCardiovascular" />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="ampliacionCardiovascular">Ampliacion: </label>
+                        <input type="text" pInputText id="ampliacionCardiovascular" formControlName="ampliacionCardiovascular"
+                        placeholder="ampliacionCardiovascular" />
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row" style="margin-top: 12px;">
+                    <div class="col-4">
+                        <label for="swRespiratorio">Respiratorio: </label>
+
+                    </div>
+                    <div class="col-4">
+                        <label for="swRespiratorio" style="display: block;">{{this.revisionSistemasForm.value.swRespiratorio ===
+                            true ? 'Si' : 'No'}}</label>
+                        <p-toggleswitch formControlName="swRespiratorio" />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="ampliacionRespiratorio">Ampliacion: </label>
+                        <input type="text" pInputText id="ampliacionRespiratorio" formControlName="ampliacionRespiratorio"
+                        placeholder="ampliacionRespiratorio" />
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row" style="margin-top: 12px;">
+                    <div class="col-4">
+                        <label for="swGastroIntestinal">GastroIntestinal: </label>
+
+                    </div>
+                    <div class="col-4">
+                        <label for="swGastroIntestinal" style="display: block;">{{this.revisionSistemasForm.value.swGastroIntestinal ===
+                            true ? 'Si' : 'No'}}</label>
+                        <p-toggleswitch formControlName="swGastroIntestinal" />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="ampliacionGastroIntestinal">Ampliacion: </label>
+                        <input type="text" pInputText id="ampliacionGastroIntestinal" formControlName="ampliacionGastroIntestinal"
+                        placeholder="ampliacionGastroIntestinal" />
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row" style="margin-top: 12px;">
+                    <div class="col-4">
+                        <label for="swOtro">Otro: </label>
+
+                    </div>
+                    <div class="col-4">
+                        <label for="swOtro" style="display: block;">{{this.revisionSistemasForm.value.swOtro ===
+                            true ? 'Si' : 'No'}}</label>
+                        <p-toggleswitch formControlName="swOtro" />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="ampliacionOtro">Ampliacion: </label>
+                        <input type="text" pInputText id="ampliacionOtro" formControlName="ampliacionOtro"
+                        placeholder="ampliacionOtro" />
+                    </div>
+                </div>
+
+                <hr>
+
+                <div style="display: flex; justify-content: end; margin: 12px;">
+             
+                    <p-button label="Guardar" type="submit" severity="info" [disabled]="revisionSistemasForm.invalid" />
+                  </div>
+
+            </form>
+        </div>
+    </div>
+</div>
