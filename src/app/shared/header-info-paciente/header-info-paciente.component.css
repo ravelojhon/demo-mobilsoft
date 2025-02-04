@@ -1,0 +1,65 @@
+.card{
+    background: ghostwhite !important;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgb(0 0 0 / 5%) 0px 1px 2px;
+    margin-bottom: 60px;
+    border: 1px solid #a6cafd63;
+    z-index: 2;
+}
+.card-header{
+    background: ghostwhite !important;
+    border-bottom: none;
+    padding-top: 16px;
+    padding-bottom: 0px;
+
+    & > .div-icon, .shadow-div-icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        position: absolute;
+    }
+
+    & > .div-icon{
+        background: white;
+        width: 80px;
+        height: 80px;
+        z-index: 2;
+        top: -33px;
+        left: 30px;
+        border: 7px solid ghostwhite;
+
+        & > i{
+            font-size: 36px;
+            color: #1756ad;
+            transition: all ease 0.2s;
+        }
+
+        & > i:hover{
+            transform: rotate(25deg);
+        }
+    }
+
+    & > .shadow-div-icon{
+        background: #d8e6fe;
+        width: 82px;
+        height: 82px;
+        z-index: -1;
+        top: -34px;
+        left: 29px;
+    }
+
+    & > h5{
+        margin: 0px;
+        margin-left: 110px;
+        color: #1756ad;
+        background: -webkit-linear-gradient(right, #b2b2b24a, #1756ad);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        border-bottom: 1px solid #e7e8ef;
+        padding-bottom: 12px;
+    }
+}
+
+.container-card{
+    border-radius: 40px;
+}

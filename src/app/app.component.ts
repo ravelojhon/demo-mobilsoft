@@ -17,9 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   imports: [
-    /*
-    Dialog, InputTextModule, Select
-    */
    DialogModule,
    SelectModule,
     MatToolbarModule,
@@ -30,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     AsyncPipe,
     RouterModule
   ],
+  standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

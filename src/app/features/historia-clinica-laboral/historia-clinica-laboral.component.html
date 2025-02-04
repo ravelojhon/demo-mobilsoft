@@ -1,0 +1,73 @@
+<!-- <app-header-info-paciente></app-header-info-paciente> -->
+<div class="row" style="margin-top: 12px;">
+    <div class="card">
+        <p-card header="Aspirantes">
+        <p-table [columns]="cols" [value]="aspirantes" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template #header let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{ col.header }}
+                    </th>
+
+                    <th>Acción</th> 
+                </tr>
+            </ng-template>
+            <ng-template #body let-rowData let-columns="columns">
+                <tr>
+                    <td *ngFor="let col of columns">
+                        {{ rowData[col.field] }}
+                    </td>
+
+                    <td>
+                        <p-button icon="pi pi-pencil" class="p-button-rounded p-button-info" (onClick)="createHistoriaLaboral(rowData)" severity="info"/>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-card>
+    </div>
+</div>
+
+<p-dialog [modal]="true" [(visible)]="showForm" [style]="{ width: '90vw', maxWidth: '1200px', height: 'auto' }">
+    <form>
+        <div class="header_modal">
+            <h1>Crear Historia Clinica</h1>
+        </div>
+
+        <div class="content_modal">
+            <div class="row">
+                <div class="col-12">
+                    <app-header-info-paciente [patientFound]="patientFound"></app-header-info-paciente>
+                </div>
+                <div class="col-12">
+                    <app-antecedentes  (antecedentesOutPut)="setform('antecedentes', $event)"></app-antecedentes>
+                </div>
+
+                <div class="col-12">
+                    <app-antecedentes-familiares (antecedentesfamiliaresOutPut)="setform('antecedentesFamiliares', $event)"></app-antecedentes-familiares>
+                </div>
+
+                <div class="col-12">
+                    <app-antecedentes-ocupacionales
+                    (antecedentesOcupacionalesOutPut)="setform('antecedentesOcupacionales', $event)"
+                    ></app-antecedentes-ocupacionales>
+                </div>
+
+                <div class="col-12">
+                    <app-enfermedades-laborales 
+                    (enfermedadesLaboralesOutPut)="setform('enfermedadesLaborales', $event)"
+                    ></app-enfermedades-laborales>
+                </div>
+
+                <div class="col-12">
+                    <app-habitos 
+                    (habitosOutPut)="setform('habitos', $event)"
+                    ></app-habitos>
+                </div>
+
+
+            </div>
+        </div>
+    </form>
+       
+</p-dialog>

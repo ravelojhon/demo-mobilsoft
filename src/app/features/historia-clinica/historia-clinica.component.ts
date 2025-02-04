@@ -14,6 +14,7 @@ import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-historia-clinica',
+  standalone: true,
  imports: [CommonModule,FormsModule, ReactiveFormsModule, DialogModule,
     SelectModule, InputTextModule, ButtonModule, TableModule, CardModule],
     providers: [MessageService],

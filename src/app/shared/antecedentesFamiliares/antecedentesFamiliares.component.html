@@ -1,0 +1,79 @@
+<div class="card" style="margin-top: 12px;">
+    <div class="card-header">
+        <div class="shadow-div-icon">-</div>
+        <div class="div-icon"><i class="pi pi-id-card"></i></div>
+        <h5><i class="pi pi-user"></i> Antecedentes Familiares</h5>
+    </div>
+    <div class="card-body p-4">
+        <div class="container">
+            <form >
+                <div class="mb-3">
+                    <p-button label="Añadir Antecedentes" (onClick)="addAntecedente()" severity="info"/>
+
+                    <div class="row" style="margin-top: 12px;">
+                        <div class="card">
+                            <p-table [columns]="cols" [value]="antecedentesAspirante" [tableStyle]="{ 'min-width': '50rem' }">
+                                <ng-template #header let-columns>
+                                    <tr>
+                                        <th *ngFor="let col of columns">
+                                            {{ col.header }}
+                                        </th>
+                    
+                                        <th>Acción</th> 
+                                    </tr>
+                                </ng-template>
+                                <ng-template #body let-rowData let-columns="columns">
+                                    <tr>
+                                        <td *ngFor="let col of columns">
+                                            {{ rowData[col.field] }}
+                                        </td>
+                    
+                                        <!-- <td>
+                                            <p-button icon="pi pi-pencil" class="p-button-rounded p-button-info" (onClick)="createHistoriaLaboral(rowData)" severity="info"/>
+                                        </td> -->
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<p-dialog [modal]="true" [(visible)]="showForm" [style]="{ width: '60%', maxWidth: '800px', height: 'auto' }">
+    <form [formGroup]="antecedentesForm" (ngSubmit)="onSubmit()">
+        <div class="header_modal">
+            <h1>Antecedente</h1>
+        </div>
+
+        <div class="content_modal">
+            <div class="row">
+                <div class="col-12">
+                    <label for="parentezco" style="display: block;">Parentezco:</label>
+                    <input type="text" pInputText id="parentezco" formControlName="parentezco" placeholder="parentesto"/>
+                </div>
+            </div>
+   
+
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-12">
+                    <label for="patologia" style="display: block;">Patologia:</label>
+                    <textarea rows="5" cols="30" pTextarea formControlName="patologia" style="width: 100%;"></textarea>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: end; margin: 12px;">
+             
+                <p-button label="Guardar" type="submit" severity="info" [disabled]="antecedentesForm.invalid" />
+
+                <p-button label="Cancelar" (onClick)="showDialog(false)" severity="danger" type="button" />
+              
+              </div>
+
+        </div>
+    </form>
+
+</p-dialog>
+

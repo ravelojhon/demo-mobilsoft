@@ -1,0 +1,83 @@
+<div class="card" style="margin-top: 12px;">
+    <div class="card-header">
+        <div class="shadow-div-icon">-</div>
+        <div class="div-icon"><i class="pi pi-id-card"></i></div>
+        <h5><i class="pi pi-user"></i> Datos del Aspirante</h5>
+    </div>
+    <div class="card-body p-4">
+        <div class="container">
+            <form [formGroup]="formulario">
+                <div class="mb-3">
+                    <div class="group-form">
+        
+                        <div class="row">
+                            <div class="form-group col-lg-2">
+                                <label for="txtCodpac">Identificacion</label>
+                                <input type="text" class="form-control" id="txtCodpac" formControlName="txtCodpac">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="txtNompac">Nombre</label>
+                                <input type="text" class="form-control" id="txtNompac" formControlName="txtNompac">
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label for="txtFecnac">Fecha Nacimiento</label>
+                                <input type="text" class="form-control" id="txtFecnac" formControlName="txtFecnac">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="txtIngreso">Fecha Ingreso</label>
+                                <input type="text" class="form-control" id="txtIngreso" formControlName="txtIngreso">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="txtEdad">Edad</label>
+                                <input type="text" class="form-control" id="txtEdad" formControlName="txtEdad">
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top: 12px;">
+                            <div class="form-group col-md-2">
+                                <label for="txtSexo">Sexo</label>
+                                <input type="text" class="form-control" id="txtSexo" formControlName="txtSexo">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="txtNro">Orden N°</label>
+                                <input type="text" class="form-control" id="txtNro" formControlName="txtNro">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="txtDirpac">Dirección</label>
+                                <input type="text" class="form-control" id="txtDirpac" formControlName="txtDirpac">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="txtTelpac">Teléfono</label>
+                                <input type="text" class="form-control" id="txtTelpac" formControlName="txtTelpac">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="txtEstadoCivil">Estado Civil</label>
+                                <input type="text" class="form-control" id="txtTelpac" formControlName="txtEstadoCivil">
+                            </div>
+                          
+                        </div>
+
+                        <div class="row" style="margin-top: 12px;">
+                            <div class="form-group col-md-2">
+                                <label for="txtEscolaridad">Escolaridad</label>
+                                <input type="text" class="form-control" id="txtEscolaridad" formControlName="txtEscolaridad">
+                            </div> 
+                            <div class="form-group col-md-4">
+                                <label for="txtCorreoElectronico">Email</label>
+                                <input type="text" class="form-control" id="txtCorreoElectronico" formControlName="txtCorreoElectronico">
+                            </div> 
+                            <div class="form-group col-md-2">
+                                <label for="txtGrupoS">Grupo S</label>
+                                <input type="text" class="form-control" id="txtGrupoS" formControlName="txtGrupoS">
+                            </div> 
+                        </div>
+
+                    </div>
+        
+        
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

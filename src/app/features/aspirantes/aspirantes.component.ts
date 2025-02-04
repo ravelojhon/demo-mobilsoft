@@ -119,13 +119,10 @@ export class AspirantesComponent implements OnInit {
   loadAspirantes() {
     this.aspiranteService.getAspirantes().subscribe({
       next: (data) => {
-        // `data` es lo que recibimos de la API, en este caso una lista de aspirantes
-        this.aspirantes = data?.resultado[0]; // Asignamos los aspirantes a la variable
+        this.aspirantes = data?.resultado[0]; 
       },
       error: (error) => {
-        // En caso de error, mostramos un mensaje
         console.error('Error al obtener los aspirantes', error);
-        // this.errorMessage = 'Hubo un error al cargar los aspirantes. Intente nuevamente.';
       },
       complete: () => {
         console.log('La solicitud de aspirantes ha sido completada.');
@@ -150,9 +147,6 @@ export class AspirantesComponent implements OnInit {
   }
 
   editarAspirante(aspirante: any) {
-    // Aquí puedes manejar la lógica de edición, por ejemplo, abrir un formulario de edición con los datos del aspirante.
-    console.log(aspirante);
-    // Llamar a un servicio para editar o actualizar los datos según lo que necesites.
     this.selectedRow=aspirante;
 
     const findTipoDocumento = this.typeDocuments?.find((tipo: any) => tipo.codigo === aspirante.TipoDocumento)

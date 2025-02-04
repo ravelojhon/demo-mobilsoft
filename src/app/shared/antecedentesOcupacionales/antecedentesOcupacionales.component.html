@@ -1,0 +1,117 @@
+<div class="card" style="margin-top: 12px;">
+    <div class="card-header">
+        <div class="shadow-div-icon">-</div>
+        <div class="div-icon"><i class="pi pi-id-card"></i></div>
+        <h5><i class="pi pi-user"></i> Antecedentes Ocupacionales</h5>
+    </div>
+    <div class="card-body p-4">
+        <div class="container">
+            <form >
+                <div class="mb-3">
+                    <p-button label="Añadir Antecedentes" (onClick)="addAntecedente()" severity="info"/>
+
+                    <div class="row" style="margin-top: 12px;">
+                        <div class="card">
+                            <p-table [columns]="cols" [value]="antecedentesAspirante" [tableStyle]="{ 'min-width': '50rem' }">
+                                <ng-template #header let-columns>
+                                    <tr>
+                                        <th *ngFor="let col of columns">
+                                            {{ col.header }}
+                                        </th>
+                    
+                                        <th>Acción</th> 
+                                    </tr>
+                                </ng-template>
+                                <ng-template #body let-rowData let-columns="columns">
+                                    <tr>
+                                        <td *ngFor="let col of columns">
+                                            {{ rowData[col.field] }}
+                                        </td>
+                    
+                                        <!-- <td>
+                                            <p-button icon="pi pi-pencil" class="p-button-rounded p-button-info" (onClick)="createHistoriaLaboral(rowData)" severity="info"/>
+                                        </td> -->
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<p-dialog [modal]="true" [(visible)]="showForm" [style]="{ width: '60%', maxWidth: '800px', height: 'auto' }">
+    <form [formGroup]="antecedentesForm" (ngSubmit)="onSubmit()">
+        <div class="header_modal">
+            <h1>Antecedente</h1>
+        </div>
+
+        <div class="content_modal">
+            <div class="row">
+                <div class="col-12">
+                    <label for="Empresa" style="display: block;">Empresa:</label>
+                    <input type="text" pInputText id="Empresa" formControlName="Empresa" placeholder="Empresa"/>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 12px;">
+                <div class="col-4">
+                    <label for="Biologico" style="display: block;">Biologico:</label>
+                    <input type="text" pInputText id="Biologico" formControlName="Biologico" placeholder="Biologico"/>
+                </div>
+
+                <div class="col-4">
+                    <label for="Fisico" style="display: block;">Fisico:</label>
+                    <input type="text" pInputText id="Fisico" formControlName="Fisico" placeholder="Fisico"/>
+                </div>
+                <div class="col-4">
+                    <label for="Biomecanico" style="display: block;">Biomecanico:</label>
+                    <input type="text" pInputText id="Biomecanico" formControlName="Biomecanico" placeholder="Biomecanico"/>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 12px;">
+                <div class="col-4">
+                    <label for="Quimico" style="display: block;">Quimico:</label>
+                    <input type="text" pInputText id="Quimico" formControlName="Quimico" placeholder="Quimico"/>
+                </div>
+                <div class="col-4">
+                    <label for="Condicion" style="display: block;">Condicion:</label>
+                    <input type="text" pInputText id="Condicion" formControlName="Condicion" placeholder="Condicion"/>
+                </div>
+                <div class="col-4">
+                    <label for="Psicosocial" style="display: block;">Psicosocial:</label>
+                    <input type="text" pInputText id="Psicosocial" formControlName="Psicosocial" placeholder="Psicosocial"/>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 12px;">
+                <div class="col-4">
+                    <label for="Cargo" style="display: block;">Cargo:</label>
+                    <input type="text" pInputText id="Cargo" formControlName="Cargo" placeholder="Cargo"/>
+                </div>
+                <div class="col-4">
+                    <label for="Antiguedad" style="display: block;">Antiguedad:</label>
+                    <input type="text" pInputText id="Antiguedad" formControlName="Antiguedad" placeholder="Antiguedad"/>
+                </div>
+                <div class="col-4">
+                    <label for="Epp" style="display: block;">Epp:</label>
+                    <input type="text" pInputText id="Epp" formControlName="Epp" placeholder="Epp"/>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: end; margin: 12px;">
+             
+                <p-button label="Guardar" type="submit" severity="info" [disabled]="antecedentesForm.invalid" />
+
+                <p-button label="Cancelar" (onClick)="showDialog(false)" severity="danger" type="button" />
+              
+              </div>
+
+        </div>
+    </form>
+
+</p-dialog>
+
