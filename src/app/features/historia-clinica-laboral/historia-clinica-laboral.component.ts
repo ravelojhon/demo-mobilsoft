@@ -121,6 +121,7 @@ initForm(): FormGroup {
 
   setform(type: string, value: any) {
     if (type === 'antecedentes') {
+      console.log(value)
       this.antecedentesArray = value
     } else if (type === 'antecedentesFamiliares') {
       console.log(value)

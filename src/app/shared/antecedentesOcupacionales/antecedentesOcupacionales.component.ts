@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Output,EventEmitter, } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -27,6 +27,8 @@ export class AntecedentesOcupacionalesComponent implements OnInit {
   isGineco: boolean = false;
   showForm = false;
   antecedentesForm!: FormGroup;
+  selectedEditRow!: any;
+  editMode: boolean = false;
 
   @Output() antecedentesOcupacionalesOutPut = new EventEmitter<any>();
 
@@ -68,7 +70,10 @@ export class AntecedentesOcupacionalesComponent implements OnInit {
 
   showDialog(state: boolean) {
     if (state === false) {
-     this.antecedentesForm.reset();
+      this.selectedRow = null
+      this.editMode = false
+      this.selectedEditRow = null
+      this.antecedentesForm.reset();
     }
     this.showForm = state;
   }
@@ -78,23 +83,98 @@ export class AntecedentesOcupacionalesComponent implements OnInit {
   }
 
 
-  onSubmit() {
+  editAntecedente(rowData: any) {
+    console.log(rowData)
+    this.selectedRow = rowData;
+    this.selectedEditRow = rowData;
 
-    const obj = {
-      Empresa:this.antecedentesForm?.get('Empresa')?.value,
-      Biologico: this.antecedentesForm?.get('Biologico')?.value,
-      Fisico: this.antecedentesForm?.get('Fisico')?.value,
-      Biomecanico: this.antecedentesForm?.get('Biomecanico')?.value,
-      Quimico: this.antecedentesForm?.get('Quimico')?.value,
-      Condicion: this.antecedentesForm?.get('Condicion')?.value,
-      Psicosocial: this.antecedentesForm?.get('Psicosocial')?.value,
-      Cargo: this.antecedentesForm?.get('Cargo')?.value,
-      Antiguedad: this.antecedentesForm?.get('Antiguedad')?.value,
-      Epp: this.antecedentesForm?.get('Epp')?.value,
-};
-    this.antecedentesAspirante.push(obj);
-    this.showDialog(false);
-    this.antecedentesOcupacionalesOutPut.emit(this.antecedentesAspirante);
+    this.antecedentesForm.patchValue({
+      Empresa: rowData.Empresa,
+      Biologico: rowData.Biologico,
+      Fisico: rowData.Fisico,
+      Biomecanico: rowData.Biomecanico,
+      Quimico: rowData.Quimico,
+      Condicion: rowData.Condicion,
+      Psicosocial: rowData.Psicosocial,
+      Cargo: rowData.Cargo,
+      Antiguedad: rowData.Antiguedad,
+      Epp: rowData.Epp,
+    })
+    this.showDialog(true);
+    this.editMode = true
   }
 
+  deleteAntecedente(rowData: any) {
+      const index = this.antecedentesAspirante.findIndex(item => 
+        item?.index === rowData?.index
+      );
+
+      if (index !== -1) {
+        this.antecedentesAspirante.splice(index, 1);
+        this.antecedentesOcupacionalesOutPut.emit(this.antecedentesAspirante);
+      }
+  }
+
+  onSubmit() {
+    const indexLength = this.antecedentesAspirante.length;
+    let obj = {}
+
+    obj = {
+      Empresa: '',
+      Biologico: '',
+      Fisico: '',
+      Biomecanico: '',
+      Quimico: '',
+      Condicion: '',
+      Psicosocial: '',
+      Cargo: '',
+      Antiguedad: '',
+      Epp: '',
+      index: 0
+    };
+
+    if (this.editMode) {
+      const index = this.antecedentesAspirante.findIndex(item =>
+        item.index === this.selectedEditRow.index
+      );
+
+      if (index !== -1) {
+        obj = {
+          Empresa: this.antecedentesForm?.get('Empresa')?.value,
+          Biologico: this.antecedentesForm?.get('Biologico')?.value,
+          Fisico: this.antecedentesForm?.get('Fisico')?.value,
+          Biomecanico: this.antecedentesForm?.get('Biomecanico')?.value,
+          Quimico: this.antecedentesForm?.get('Quimico')?.value,
+          Condicion: this.antecedentesForm?.get('Condicion')?.value,
+          Psicosocial: this.antecedentesForm?.get('Psicosocial')?.value,
+          Cargo: this.antecedentesForm?.get('Cargo')?.value,
+          Antiguedad: this.antecedentesForm?.get('Antiguedad')?.value,
+          Epp: this.antecedentesForm?.get('Epp')?.value,
+          index: this.selectedEditRow.index
+        };
+
+        this.antecedentesAspirante[index] = obj;
+        this.antecedentesOcupacionalesOutPut.emit(this.antecedentesAspirante);
+        this.showDialog(false);
+        this.antecedentesForm.reset();
+      }
+    } else {
+      obj = {
+        Empresa: this.antecedentesForm?.get('Empresa')?.value,
+        Biologico: this.antecedentesForm?.get('Biologico')?.value,
+        Fisico: this.antecedentesForm?.get('Fisico')?.value,
+        Biomecanico: this.antecedentesForm?.get('Biomecanico')?.value,
+        Quimico: this.antecedentesForm?.get('Quimico')?.value,
+        Condicion: this.antecedentesForm?.get('Condicion')?.value,
+        Psicosocial: this.antecedentesForm?.get('Psicosocial')?.value,
+        Cargo: this.antecedentesForm?.get('Cargo')?.value,
+        Antiguedad: this.antecedentesForm?.get('Antiguedad')?.value,
+        Epp: this.antecedentesForm?.get('Epp')?.value,
+        index: indexLength + 1
+      };
+      this.antecedentesAspirante.push(obj);
+      this.showDialog(false);
+      this.antecedentesOcupacionalesOutPut.emit(this.antecedentesAspirante);
+    }
+  }
 }

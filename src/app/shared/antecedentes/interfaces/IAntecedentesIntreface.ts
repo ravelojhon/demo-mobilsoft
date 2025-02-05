@@ -11,9 +11,10 @@ export interface IAntecedentesAspiranteIntreface {
         nombre_antecedente: string,
         estado: boolean,
         ampliacion:string
-        id_antecedente?: number,
+        id_antecedente_gineco?: number,
         codigoGineco?: string,
         nombre_antecedente_gineco?: string,
+        index?: number
 }
 
 export interface IAntecedentesGinecoIntreface {

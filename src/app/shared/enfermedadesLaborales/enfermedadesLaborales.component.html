@@ -29,9 +29,18 @@
                                             {{ rowData[col.field] }}
                                         </td>
 
-                                        <!-- <td>
-                                            <p-button icon="pi pi-pencil" class="p-button-rounded p-button-info" (onClick)="createHistoriaLaboral(rowData)" severity="info"/>
-                                        </td> -->
+                                        <td>
+                                            <div class="flex gap-2">
+                                                <p-button icon="pi pi-pencil" 
+                                                         class="p-button-rounded p-button-warning" 
+                                                         (onClick)="editAntecedente(rowData)"
+                                                         severity="info"/>
+                                                <p-button icon="pi pi-trash" 
+                                                         class="p-button-rounded p-button-danger" 
+                                                         (onClick)="deleteAntecedente(rowData)"
+                                                         severity="danger"/>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </ng-template>
                             </p-table>
@@ -59,14 +68,21 @@
 
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4">
+                    <!-- <label for="eloAoT" style="display: block;">El o At:</label>
+                    <input type="text" pInputText id="eloAoT" formControlName="eloAoT" placeholder="eloAoT" /> -->
                     <label for="eloAoT" style="display: block;">El o At:</label>
-                    <input type="text" pInputText id="eloAoT" formControlName="eloAoT" placeholder="eloAoT" />
+                    <p-select id="eloAoT" formControlName="eloAoT" [options]="eloAoTOptions" optionLabel="label"
+                        placeholder="Seleccione..." [filter]="true" filterBy="label" appendTo="body" [ngStyle]="{ width: '100%' }"
+                          />
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-4">
-                    <label for="diagnostico" style="display: block;">Diagnostico:</label>
+                    <!-- <label for="diagnostico" style="display: block;">Diagnostico:</label>
                     <input type="text" pInputText id="diagnostico" formControlName="diagnostico"
-                        placeholder="diagnostico" />
+                        placeholder="diagnostico" /> -->
+                        <label for="diagnostico" style="display: block;">Diagnostico (CIE10):</label>
+                        <p-select id="diagnostico" formControlName="diagnostico" [options]="diagnosticos" optionLabel="label"
+                            placeholder="Seleccione..." [filter]="true" filterBy="label" appendTo="body" [ngStyle]="{ width: '100%' }"  (onFilter)="onfilter($event)"/>
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-4">
