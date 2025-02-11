@@ -192,7 +192,8 @@
       <th pSortableColumn="fecha_examen">Fecha Examen <p-sortIcon field="fecha_examen"></p-sortIcon></th>
       <th pSortableColumn="tipo_examen">Tipo Examen <p-sortIcon field="tipo_examen"></p-sortIcon></th>
       <th pSortableColumn="cargo">Cargo <p-sortIcon field="cargo"></p-sortIcon></th>
-      <th pSortableColumn="eps">EPS <p-sortIcon field="eps"></p-sortIcon></th>
+      <th pSortableColumn="eps">EPS <p-sortIcon field="eps
+        "></p-sortIcon></th>
       <th pSortableColumn="afp">AFP <p-sortIcon field="afp"></p-sortIcon></th>
       <th>Acciones</th>
     </tr>
@@ -207,8 +208,8 @@
       <td>{{ historia.eps }}</td>
       <td>{{ historia.afp }}</td>
       <td>
-        <p-button  (onClick)="editarHistoriaClinica(historia)" class="p-button-rounded p-button-info p-mr-2"></p-button>
-        <p-button  (onClick)="eliminarHistoriaClinica(historia.id)" class="p-button-rounded p-button-danger"></p-button>
+        <p-button icon="pi pi-pencil" (onClick)="editarHistoriaClinica(historia)" class="p-button-rounded p-button-info p-mr-2"></p-button>
+        <p-button icon="pi pi-trash" (onClick)="eliminarHistoriaClinica(historia.id)" class="p-button-rounded p-button-danger"></p-button>
       </td>
     </tr>
   </ng-template>
